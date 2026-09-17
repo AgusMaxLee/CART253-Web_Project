@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2b1055"/>
+      <stop offset="100%" stop-color="#7597de"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#bg)"/>
+  <text x="60" y="150" font-family="Verdana, Geneva, sans-serif" font-size="64" fill="#ffffff" font-weight="bold">CART 253</text>
+  <text x="60" y="210" font-family="Verdana, Geneva, sans-serif" font-size="32" fill="#e0d8f7">Prototyping for Games and Play</text>
+</svg>
