@@ -1,6 +1,7 @@
 /**
  * Minion
- * Name
+ * Names:
+ * Agustin, Chloe, Alejandro
  *
  * It is a minion.
  */
@@ -13,7 +14,7 @@ function setup() {
 }
 
 /**
- * Draws the cat
+ * Draws the minion
  */
 function draw() {
   // Pink background
@@ -26,7 +27,7 @@ function draw() {
 }
 
 /**
- * Draws the cat using functions
+ * Draws the minion using functions
  */
 function drawMinion() {
     drawLandscape();
