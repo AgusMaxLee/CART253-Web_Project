@@ -1,17 +1,19 @@
-# CART 253: Prototyping
+# CART 253 Prototyping
 
 Agustin Maximo Lee
 
-![Banner image for CART 253 course website](./images/banner.svg)
+![Banner image of the course](./images/banner.svg)
 
-This website collects together and shows off the prototyping work I'm doing for CART 253. Each project below was built as part of a course exercise or assignment, and represents a step in learning how to design, code, and iterate on interactive prototypes.
+## Description
+
+> This website shows off the work I've made throughout CART 253. Each project is in its own folder with a different idea, technique, or piece of creative code.
 
 ## Useful Links
 
-- [My reflective journal](./journal.md)
-- [My GitHub profile](https://github.com/AgusMaxLee)
+> - [Reflective Journal](./journal.md)
 
 ## Prototypes
 
-- [Version Control Workflow](https://agusmaxlee.github.io/CART253-Web_Project/topics/version-control/version-control-workflow/) — a first exercise in using Git and GitHub to manage a p5.js sketch.
-- [Instructions Challenge](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions-challenge/) — a p5.js sketch built by following a set of instructions.
+> - [Version Control Workflow](./topics/version-control/version-control-workflow/) — a small p5.js sketch used to practice a Git version-control workflow.
+
+> - [p5 Minion Illustration](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions-challenge/) — a p5.js illustration of a minion in a beautiful landscape, built as part of the instructions challenge.

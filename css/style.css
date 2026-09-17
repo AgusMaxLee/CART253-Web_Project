@@ -1,0 +1,97 @@
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, sans-serif;
+  background-color: #f4f2fa;
+  color: #2b1055;
+}
+
+a {
+  color: #4b2e91;
+}
+
+a:hover {
+  color: #7597de;
+}
+
+/* Banner */
+.banner {
+  width: 100%;
+  display: block;
+}
+
+/* Page layout */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+header {
+  text-align: center;
+  padding: 20px 20px 0;
+}
+
+header h1 {
+  margin-bottom: 0;
+}
+
+.description {
+  text-align: center;
+  max-width: 650px;
+  margin: 10px auto 40px;
+  line-height: 1.5;
+}
+
+/* Useful links */
+.links {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.links a {
+  margin: 0 10px;
+}
+
+/* Project cards */
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd6f3;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(43, 16, 85, 0.08);
+}
+
+.project-card h3 {
+  margin-top: 0;
+}
+
+.project-card a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
+
+.project-card p {
+  line-height: 1.4;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #6a5a91;
+  font-size: 0.9em;
+}
