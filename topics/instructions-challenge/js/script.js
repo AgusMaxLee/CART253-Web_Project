@@ -17,38 +17,40 @@ function setup() {
  */
 function draw() {
   // Pink background
-  background(255, 180, 180);
+  background("lightblue");
   
   // No stroke everywhere!
   noStroke();
   
-  drawCat();
+  drawMinion();
 }
 
 /**
  * Draws the cat using functions
  */
-function drawCat() {
-  drawHead();
-  drawEyes();
-//   drawNose();
-//   drawMouth();
+function drawMinion() {
+    drawLandscape();
+    drawHair();
+    drawHead();
+    drawEyes();
+    drawMouth();
+    drawClothes();
 }
 
 /**
- * Draws the cat's head (including its ears)
+ * Draws the minion's head (including its eyes, goggles and hair)
  */
 function drawHead() {
   
   // Minion head
 
   push();
-  fill("yellow");
+  fill("#FCE029");
   circle(200, 200, 250);
   
   // Minion body
 
-  fill("yellow");
+  fill("#FCE029");
   rect(75, 200, 250, 200);
   pop();
 }
@@ -57,17 +59,17 @@ function drawHead() {
  * Draws the minion's eye
  */
 function drawEyes() {
-     // goggles
+     // Goggle's band
   push();
   fill("black");
   rect(70, 170, 260, 40);
   pop();
-    // goggles
+    // Goggles
   push();
   fill("#97978f");
   ellipse(200, 200, 160);
   pop();
-    // eye
+    // Eye
   push();
   fill(255);
   ellipse(200, 200, 120);
@@ -77,26 +79,61 @@ function drawEyes() {
 
 }
 
-// /**
-//  * Draws the cat's nose
-//  */
-// function drawNose() {
-//   // Cat nose
-//   push();
-//   fill(255, 100, 100);
-//   triangle(190, 340, 210, 340, 200, 360);
-//   pop();
-// }
+/**
+ * Draws the Minion's mouth
+ */
+function drawMouth() {
+// Draw the mouth
+  push();
+  strokeWeight(7);
+  stroke(0, 20, 0);
+  noFill();
+  angleMode(DEGREES);
+  arc(200, 150, 200, 340, 65, 115);
+  pop();
+}
 
-// /**
-//  * Draws the cat's mouth
-//  */
-// function drawMouth() {
-//   // Cat mouth
-//   push();
-//   strokeWeight(2);
-//   stroke(255, 100, 100);
-//   line(200, 360, 190, 370);
-//   line(200, 360, 210, 370);
-//   pop();
-// }
+/**
+ * Draws the Minion's hair
+ */
+function drawHair() {
+    push();
+    stroke('black');
+    strokeWeight(5);
+    line(200, 150, 150, 55);
+    line(200, 150, 200, 40);
+    line(200, 150, 250, 55);
+    pop();
+}
+
+/**
+ * Draws the minion's clothes
+ */
+function drawClothes() {
+  // Minion's clothes
+  push();
+  fill("#0A75BC");
+  rect(75, 350, 250, 50);
+  pop();
+}
+
+/**
+ * Draw the mountains and sun
+ */
+
+function drawLandscape() {
+    //mountains
+    push();
+    fill("brown");
+    rect(55, 300, 50, 100);
+    pop();
+    push();
+    fill("green");
+    triangle(0, 315, 100, 20, 200, 315);
+    pop();
+
+    //sun
+    push();
+    fill("yellow");
+    circle(400, 15, 250);
+}
