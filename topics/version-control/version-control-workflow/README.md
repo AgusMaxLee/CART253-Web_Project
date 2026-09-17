@@ -1,4 +1,4 @@
-# CART 253 WEB PROJECTS
+# VERSION CONTROL ACTIVITY
 
 Agustin Maximo Lee
 
@@ -24,6 +24,4 @@ I am indeed a clown. Here is a selfie:
 
 ## License
 
-This bit should include the license you want to apply to your work. For example:
-
-> This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.
+> None :)
