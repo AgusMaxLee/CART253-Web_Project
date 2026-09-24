@@ -15,13 +15,16 @@ function setup() {
 }
 
 /**
- * Draws a single rotating box at the centre
+ * Draws a single box, rotated based on the mouse position
  */
 function draw() {
     background(20);
 
-    // Rotate the whole scene a little more each frame
-    rotateY(frameCount * 0.01);
+    // Turn the box based on where the mouse is on the canvas
+    const angleY = map(mouseX, 0, width, 0, TWO_PI);
+    const angleX = map(mouseY, 0, height, 0, TWO_PI);
+    rotateY(angleY);
+    rotateX(angleX);
 
     push();
     fill(200, 100, 255);
