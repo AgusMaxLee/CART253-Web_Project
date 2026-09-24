@@ -11,4 +11,3 @@
 
 
 ![Screenshot of the course website](./images/screenshot.png)
-d
