@@ -119,6 +119,8 @@ function drawBirdFlying(){
   // Move bird
   bird.x += bird.speedX;
   bird.speedX = bird.speedX + bird.accelerationX;
+
+  // contraint x
   // bird.speedX = constrain(bird.speedX, -50, 50);
 
   bird.y += bird.speedY;
