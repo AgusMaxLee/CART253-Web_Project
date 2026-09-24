@@ -2,7 +2,7 @@
 
 Agustin Maximo Lee
 
-[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions/prototype-1/)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions/rocket/)
 
 ## Description
 
