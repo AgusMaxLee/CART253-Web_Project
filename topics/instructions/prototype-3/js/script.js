@@ -9,6 +9,8 @@
 
 // How many shapes to generate
 const numShapes = 15;
+// The kinds of shapes that can be randomly picked
+const shapeTypes = ["box", "sphere", "cone", "torus"];
 let shapes = [];
 
 /**
@@ -24,7 +26,8 @@ function setup() {
             y: random(-250, 250),
             z: random(-250, 250),
             size: random(20, 80),
-            hue: random(0, 360)
+            hue: random(0, 360),
+            type: random(shapeTypes)
         });
     }
 }
@@ -41,7 +44,17 @@ function draw() {
         translate(s.x, s.y, s.z);
         fill(s.hue, 80, 90);
         noStroke();
-        sphere(s.size);
+
+        if (s.type === "box") {
+            box(s.size);
+        } else if (s.type === "sphere") {
+            sphere(s.size / 2);
+        } else if (s.type === "cone") {
+            cone(s.size / 2, s.size);
+        } else if (s.type === "torus") {
+            torus(s.size / 2, s.size / 6);
+        }
+
         pop();
     }
 }
