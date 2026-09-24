@@ -1,22 +1,30 @@
 /**
- * Title of Project
+ * Orbiting Shapes
  * Agustin Maximo Lee
  *
- * Description of this prototype goes here.
+ * An abstract 3D scene of simple shapes orbiting a centre point.
  */
 
 "use strict";
 
 /**
- * Creates the canvas
+ * Creates a 3D (WEBGL) canvas
  */
 function setup() {
-    createCanvas(640, 640);
+    createCanvas(640, 640, WEBGL);
 }
 
 /**
- * Draws the prototype
+ * Draws a single rotating box at the centre
  */
 function draw() {
+    background(20);
 
+    // Rotate the whole scene a little more each frame
+    rotateY(frameCount * 0.01);
+
+    push();
+    fill(200, 100, 255);
+    box(100);
+    pop();
 }
