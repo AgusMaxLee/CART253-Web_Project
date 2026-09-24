@@ -2,7 +2,7 @@
  * Prototype 1
  * Agustin Maximo Lee
  *
- * A description of this prototype goes here.
+ * Description
  */
 
 "use strict";
