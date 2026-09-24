@@ -1,5 +1,5 @@
 /**
- * 3D Shapes
+ * Robot
  * Agustin Maximo Lee
  *
  * A 3D box with a simple face on it, rotated by the mouse position.

@@ -1,21 +1,18 @@
 /**
- * Title of Project
+ * 3D Shape Generator
  * Agustin Maximo Lee
  *
- * An abstract scene of random 3D shapes, generated fresh every time
- * the page loads.
+ * An abstract scene of random 3D shapes, generated randomly.
  */
 
 "use strict";
 
 // How many shapes to generate
 const numShapes = 15;
-// Will hold one object per shape: {x, y, z, size, hue}
 let shapes = [];
 
 /**
- * Creates the canvas, sets up HSB colour mode, and generates
- * a fresh set of random shapes
+ * Creates the canvas, sets up HSB colour mode, and generates random shapes.
  */
 function setup() {
     createCanvas(640, 640, WEBGL);
@@ -33,7 +30,7 @@ function setup() {
 }
 
 /**
- * Draws the background (for now, shapes come in the next step)
+ * Draws the background
  */
 function draw() {
     background(0, 0, 10);
