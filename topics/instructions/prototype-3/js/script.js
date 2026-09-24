@@ -30,8 +30,18 @@ function setup() {
 }
 
 /**
- * Draws the background
+ * Draws the background and every random shape in the shapes array
  */
 function draw() {
     background(0, 0, 10);
+
+    for (let i = 0; i < shapes.length; i++) {
+        const s = shapes[i];
+        push();
+        translate(s.x, s.y, s.z);
+        fill(s.hue, 80, 90);
+        noStroke();
+        sphere(s.size);
+        pop();
+    }
 }
