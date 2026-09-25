@@ -10,4 +10,14 @@
 
 
 
-![Screenshot of the course website](./images/screenshot.png)
+![Screenshot of the course website](./images/page-screenshot.png)
+
+## September 24, 2026
+
+> Working on these three prototypes honestly reminded me why I liked programming in the first place. Going back to the absolute basics was way more fun than I expected. I forgot how satisfying it is to build something from literally nothing, just messing around with shapes, colors, and variables until it starts looking like something.
+
+> What surprised me the most is how much I ended up adding on my own. I only needed a couple of shapes, but I got so into it that I threw in arrays, different variables, random shape types, spinning/moving booleans, HSB color mode... way more than I really should have for something this simple. I just really started to think: "how can I make this work?, Whats a better way to do it?". Looking back, that's honestly a good sign (right?).
+
+> The hardest part wasn't really the p5 functions themselves, it was re-learning how to think through a problem step by step instead of jumping straight to an answer. It's been a really long time since I built something from scratch like this. Kind of embarrassing to admit, but I've gotten so used to already having AI and examples to start from and to help me debug, that just starting with a "blank" file felt unfamiliar again.
+
+![Screenshot of the prototypes](./images/rocket-screenshot.png)
