@@ -2,7 +2,7 @@
 
 Agustin Maximo Lee
 
-![Banner image of the course](./images/Banner.png)
+![Banner image of the course](./images/banner.png)
 
 ## Description
 
