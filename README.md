@@ -10,6 +10,7 @@ Agustin Maximo Lee
 
 ## Useful Links
 
+> - [Course Website](https://agusmaxlee.github.io/CART253-Web_Project/)
 > - [Reflective Journal](./journal.md)
 
 ## Challenges
