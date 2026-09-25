@@ -2,7 +2,7 @@
 
 Agustin Maximo Lee
 
-![Banner image of the course](./images/banner.png)
+![Banner image of the course](./images/Banner.png)
 
 ## Description
 
@@ -12,29 +12,51 @@ Agustin Maximo Lee
 
 > - [Reflective Journal](./journal.md)
 
-## Prototypes
+## Challenges
 
-> - [Version Control Workflow](./topics/version-control/version-control-workflow/) — a small p5.js sketch used to practice a Git version-control workflow.
+### Hello, World!
 
-> - [p5 Minion Illustration](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions-challenge/) — a p5.js illustration of a minion in a beautiful landscape, built as part of the instructions challenge.
+#### Version Control Workflow
 
-## Prototyping: Instructions
+![Screenshot of the Version Control Workflow project](./images/vcw-screenshot.png)
 
-> Three small p5.js prototypes exploring basic drawing instructions, arguments, and (for two of them) the WEBGL 3D renderer. See the [journal entry](./journal.md) for this assignment.
+[View running prototype](./topics/version-control/version-control-workflow/) | [View code](./topics/version-control/version-control-workflow/)
 
-### Rocket Launch
+### Instructions
+
+#### Minion
+
+![Screenshot of the Minion project](./images/minion-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions-challenge/) | [View code](./topics/instructions-challenge/)
+
+### Variables
+
+#### Mr. Furious
+
+![Screenshot of the Mr. Furious project](./images/mr-furious-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/variables-challenge/) | [View code](./topics/variables-challenge/)
+
+## Prototyping
+
+> See the [journal entry](./journal.md) for this assignment.
+
+### Instructions
+
+#### Rocket Launch
 
 ![Screenshot of the Rocket Launch prototype](./images/rocket-screenshot.png)
 
 [View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions/rocket/) | [View code](./topics/instructions/rocket/)
 
-### Robot Head
+#### Robot Head
 
 ![Screenshot of the Robot Head prototype](./images/robot-screenshot.png)
 
 [View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions/robot/) | [View code](./topics/instructions/robot/)
 
-### Shape Generator
+#### Shape Generator
 
 ![Screenshot of the Shape Generator prototype](./images/shape-generator-screenshot.png)
 
