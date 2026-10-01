@@ -8,12 +8,12 @@
 
 "use strict";
 
-// The character's position and size
+// Mr. Impossible's position and size
 let charX = 200;
 let charY = 200;
 let charSize = 50;
 
-// Where the character is currently headed
+// Where Mr. Impossible is currently headed
 let targetX = 200;
 let targetY = 200;
 
@@ -33,7 +33,7 @@ function mousePressed() {
 }
 
 /**
- * Draws the character as a square, easing it toward the target
+ * Draws Mr. Impossible as a square, easing it toward the target
  */
 function draw() {
     background(220);
@@ -42,7 +42,7 @@ function draw() {
     charX += (targetX - charX) * 0.05;
     charY += (targetY - charY) * 0.05;
 
-    // Keep the character fully inside the canvas
+    // Keep Mr. Impossible fully inside the canvas
     charX = constrain(charX, charSize / 2, width - charSize / 2);
     charY = constrain(charY, charSize / 2, height - charSize / 2);
 
@@ -56,18 +56,18 @@ function draw() {
 }
 
 /**
- * Draws two small dots that look toward the target, so the character
+ * Draws two small dots that look toward the target, so Mr. Impossible
  * appears to face wherever it's headed
  */
 function drawEyes() {
-    // Direction from the character toward its target
+    // Direction from Mr. Impossible toward its target
     const angle = atan2(targetY - charY, targetX - charX);
 
     // How far out from the centre the eyes sit, and how far apart
     const eyeDistance = charSize * 0.2;
     const eyeSpacing = charSize * 0.15;
 
-    // A point out in front of the character, in the direction it's facing
+    // A point out in front of Mr. Impossible, in the direction it's facing
     const frontX = charX + cos(angle) * eyeDistance;
     const frontY = charY + sin(angle) * eyeDistance;
 
