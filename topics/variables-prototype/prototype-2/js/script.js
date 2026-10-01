@@ -1,8 +1,9 @@
 /**
- * Title of Project
+ * Swinging Door
  * Agustin Maximo Lee
  *
- * Description of this prototype goes here.
+ * A door, viewed from above, that swings open and closed on its own,
+ * driven entirely by a variable animated with sine.
  */
 
 "use strict";

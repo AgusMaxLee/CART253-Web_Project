@@ -1,12 +1,12 @@
-# TITLE OF PROJECT
+# SWINGING DOOR
 
 Agustin Maximo Lee
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/variables-prototype/prototype-2/)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is.
+> A door, viewed from above (top-down, like a floor plan), that swings open and closed entirely on its own. Its angle is driven by a single variable animated with `sin()`, cycling smoothly between fully closed (flat against the wall) and fully open (swung 90 degrees into the room). No interaction needed — just watch it swing.
 
 ## Attribution
 
