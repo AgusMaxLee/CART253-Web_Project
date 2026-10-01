@@ -2,7 +2,7 @@
 
 Agustin Maximo Lee
 
-[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/variables-prototype/prototype-1/)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/variables-prototype/mr-impossible/)
 
 ## Description
 

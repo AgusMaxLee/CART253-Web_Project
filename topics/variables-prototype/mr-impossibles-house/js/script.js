@@ -1,8 +1,10 @@
 /**
- * Title of Project
+ * Mr. Impossible's House
  * Agustin Maximo Lee
  *
- * Description of this prototype goes here.
+ * Mr. Impossible can be walked around a small house made of two walls
+ * and five doors. Each door opens on its own as he gets close to it,
+ * and the walls only let him through where an open doorway is.
  */
 
 "use strict";
