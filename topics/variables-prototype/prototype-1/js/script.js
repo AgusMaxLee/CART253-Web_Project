@@ -1,9 +1,9 @@
 /**
- * Title of Project
+ * Mr. Impossible
  * Agustin Maximo Lee
  *
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * A square character that eases toward wherever you click, with two
+ * eyes that always look in the direction it's heading.
  */
 
 "use strict";
@@ -50,5 +50,35 @@ function draw() {
     rectMode(CENTER);
     fill(80, 120, 200);
     rect(charX, charY, charSize, charSize);
+    pop();
+
+    drawEyes();
+}
+
+/**
+ * Draws two small dots that look toward the target, so the character
+ * appears to face wherever it's headed
+ */
+function drawEyes() {
+    // Direction from the character toward its target
+    const angle = atan2(targetY - charY, targetX - charX);
+
+    // How far out from the centre the eyes sit, and how far apart
+    const eyeDistance = charSize * 0.2;
+    const eyeSpacing = charSize * 0.15;
+
+    // A point out in front of the character, in the direction it's facing
+    const frontX = charX + cos(angle) * eyeDistance;
+    const frontY = charY + sin(angle) * eyeDistance;
+
+    // Offset sideways from that point (perpendicular to the facing direction)
+    const sideX = -sin(angle) * eyeSpacing;
+    const sideY = cos(angle) * eyeSpacing;
+
+    push();
+    noStroke();
+    fill(0);
+    circle(frontX + sideX, frontY + sideY, 6);
+    circle(frontX - sideX, frontY - sideY, 6);
     pop();
 }
