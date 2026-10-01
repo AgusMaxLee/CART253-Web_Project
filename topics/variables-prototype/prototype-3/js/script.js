@@ -16,16 +16,26 @@ let mrImpossible = {
     size: 30
 };
 
+// ---- Walls ----
+// Each wall is a horizontal line from x1 to x2 at a given y
+const wallThickness = 10;
+
+let walls = [
+    { y: 150, x1: 0, x2: 800 },
+    { y: 350, x1: 0, x2: 800 }
+];
+
 // ---- Doors ----
+// Each door is hinged on a specific wall (matched by its y)
 const doorLength = 100;
-const doorThickness = 10;
-const wallY = 150;
 const triggerDistance = 150;
 
 let doors = [
-    { hingeX: 150, hingeY: wallY, openness: 0 },
-    { hingeX: 400, hingeY: wallY, openness: 0 },
-    { hingeX: 650, hingeY: wallY, openness: 0 }
+    { hingeX: 150, hingeY: 150, openness: 0 },
+    { hingeX: 400, hingeY: 150, openness: 0 },
+    { hingeX: 650, hingeY: 150, openness: 0 },
+    { hingeX: 250, hingeY: 350, openness: 0 },
+    { hingeX: 550, hingeY: 350, openness: 0 }
 ];
 
 /**
@@ -49,7 +59,7 @@ function draw() {
     updateCharacter();
     updateDoors();
 
-    drawWall();
+    drawWalls();
     for (let i = 0; i < doors.length; i++) {
         drawDoor(doors[i]);
     }
@@ -66,6 +76,44 @@ function updateCharacter() {
 
     mrImpossible.x = constrain(mrImpossible.x, mrImpossible.size / 2, width - mrImpossible.size / 2);
     mrImpossible.y = constrain(mrImpossible.y, mrImpossible.size / 2, height - mrImpossible.size / 2);
+
+    for (let i = 0; i < walls.length; i++) {
+        blockAtWall(walls[i]);
+    }
+}
+
+/**
+ * If Mr. Impossible is at a solid part of this wall,
+ * keeps him on whichever side of it he's already on
+ */
+function blockAtWall(wall) {
+
+    if (isWallAt(mrImpossible.x, wall.y)) {
+        const wallMargin = wallThickness / 2 + mrImpossible.size / 2;
+        if (mrImpossible.y < wall.y) {
+            mrImpossible.y = min(mrImpossible.y, wall.y - wallMargin);
+        } else {
+            mrImpossible.y = max(mrImpossible.y, wall.y + wallMargin);
+        }
+    }
+}
+
+/**
+ * Checks whether the given x position, on the wall at the given y,
+ * is solid wall (true) or inside one of that wall's doorway gaps (false)
+ */
+function isWallAt(x, wallYPosition) {
+    for (let i = 0; i < doors.length; i++) {
+        const door = doors[i];
+        if (door.hingeY !== wallYPosition) {
+            continue;
+        }
+        const withinDoorway = x > door.hingeX && x < door.hingeX + doorLength;
+        if (withinDoorway) {
+            return false;
+        }
+    }
+    return true;
 }
 
 /**
@@ -80,13 +128,25 @@ function updateDoors() {
 }
 
 /**
- * Draws a plain wall across the room (the doors sit on top of it)
+ * Draws both walls' solid segments directly, with the gaps for each
+ * door typed in by hand (instead of calculating them from the doors array)
  */
-function drawWall() {
+function drawWalls() {
     push();
     stroke(100);
-    strokeWeight(doorThickness);
-    line(0, wallY, width, wallY);
+    strokeWeight(wallThickness);
+
+    // Top wall (y = 150), with gaps for its doors at x = 150, 400, 650
+    line(0, 150, 150, 150);
+    line(250, 150, 400, 150);
+    line(500, 150, 650, 150);
+    line(750, 150, 800, 150);
+
+    // Bottom wall (y = 350), with gaps for its doors at x = 250, 550
+    line(0, 350, 250, 350);
+    line(350, 350, 550, 350);
+    line(650, 350, 800, 350);
+
     pop();
 }
 
@@ -102,7 +162,7 @@ function drawDoor(door) {
     rectMode(CORNER);
     noStroke();
     fill(120, 80, 50);
-    rect(0, -doorThickness / 2, doorLength, doorThickness);
+    rect(0, -wallThickness / 2, doorLength, wallThickness);
     pop();
 
     push();
