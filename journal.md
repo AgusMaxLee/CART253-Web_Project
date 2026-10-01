@@ -21,3 +21,15 @@
 > The hardest part wasnt really the p5 functions themselves, it was re-learning how to think through a problem step by step instead of jumping straight to an answer. Its been a really long time since I built something from scratch like this. Embarrassing to admit, but Ive gotten so used to already having AI and examples to start from and to help me debug. Just starting with a "blank" file felt... kinda scary at first.
 
 ![Screenshot of the prototypes](./images/page2-screenshot.png)
+
+## October 1, 2026
+
+> After finishing the Robot Head prototype last week, I wanted to push further and make something more interactive, not just something to look at. So for this week I decided to combine the three required prototypes (well, really two of them) into one small game instead of three separate little sketches: Mr. Impossible walking around a tiny house, opening doors just by getting close to them.
+
+> What surprised me the most was how hard something as "simple" as collision feels once you have to build it yourself. I'm used to game engines that already handle walls, doors, and physics for you... so you just drag things into place and it works. Here, just making sure a square character couldn't walk through a wall unless there was an open doorway took way more thinking than I expected.
+
+> I originally wanted to add collectables and sound effects to make it feel more like an actual mini-game, but I ended up getting stuck on the most basic mechanic of all: walls.
+
+> Still, I don't see it as wasted time. There is clearly a lot more to experiment with here, and I'd like to come back to this house later and actually add the collectables and sounds I had in mind.
+
+![Screenshot of Mr. Impossible's House](./images/page3-screenshot.png)

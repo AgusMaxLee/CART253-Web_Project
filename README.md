@@ -62,3 +62,23 @@ Agustin Maximo Lee
 ![Screenshot of the Shape Generator prototype](./images/shape-generator-screenshot.png)
 
 [View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions-prototype/shape-generator/) | [View code](./topics/instructions-prototype/shape-generator/)
+
+### Variables
+
+#### Mr. Impossible
+
+![Screenshot of the Mr. Impossible prototype](./images/mr-impossible-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/variables-prototype/mr-impossible/) | [View code](./topics/variables-prototype/mr-impossible/)
+
+#### Swinging Door
+
+![Screenshot of the Swinging Door prototype](./images/swinging-door-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/variables-prototype/swinging-door/) | [View code](./topics/variables-prototype/swinging-door/)
+
+#### Mr. Impossible's House
+
+![Screenshot of the Mr. Impossible's House prototype](./images/mr-impossibles-house-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/variables-prototype/mr-impossibles-house/) | [View code](./topics/variables-prototype/mr-impossibles-house/)
