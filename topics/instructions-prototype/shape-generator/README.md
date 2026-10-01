@@ -2,7 +2,7 @@
 
 Agustin Maximo Lee
 
-[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions/shape-generator/)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions-prototype/shape-generator/)
 
 ## Description
 

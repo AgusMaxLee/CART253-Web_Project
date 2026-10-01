@@ -49,16 +49,16 @@ Agustin Maximo Lee
 
 ![Screenshot of the Rocket Launch prototype](./images/rocket-screenshot.png)
 
-[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions/rocket/) | [View code](./topics/instructions/rocket/)
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions-prototype/rocket/) | [View code](./topics/instructions-prototype/rocket/)
 
 #### Robot Head
 
 ![Screenshot of the Robot Head prototype](./images/robot-screenshot.png)
 
-[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions/robot/) | [View code](./topics/instructions/robot/)
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions-prototype/robot/) | [View code](./topics/instructions-prototype/robot/)
 
 #### Shape Generator
 
 ![Screenshot of the Shape Generator prototype](./images/shape-generator-screenshot.png)
 
-[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions/shape-generator/) | [View code](./topics/instructions/shape-generator/)
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/instructions-prototype/shape-generator/) | [View code](./topics/instructions-prototype/shape-generator/)
