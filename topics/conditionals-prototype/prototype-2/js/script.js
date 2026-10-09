@@ -15,6 +15,9 @@ let boxSize = 150;
 // The creature's size (it sits at the same position as the box)
 let creatureSize = 60;
 
+// How close the mouse needs to be before the creature hides
+let hideDistance = 100;
+
 /**
  * Creates the canvas
  */
@@ -29,7 +32,12 @@ function draw() {
     background(220);
 
     drawBox();
-    drawCreature();
+
+    // Only draw the creature if the mouse isn't too close
+    const mouseDistance = dist(mouseX, mouseY, boxX, boxY);
+    if (mouseDistance > hideDistance) {
+        drawCreature();
+    }
 }
 
 /**
