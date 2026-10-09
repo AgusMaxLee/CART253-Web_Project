@@ -1,12 +1,12 @@
-# TITLE OF PROJECT
+# NO-NO BOX
 
 Agustin Maximo Lee
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/conditionals-prototype/prototype-2/)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is.
+> A shy little creature peeks out of a box. As you move your mouse closer, conditionals check the distance and change its mood in stages: calm and smiling from far away, nervous (wide eyes, flat mouth) once you get fairly close, and fully hidden inside the box once you get too close. Move your mouse away and it slowly works up the courage to peek back out.
 
 ## Attribution
 

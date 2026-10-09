@@ -1,8 +1,9 @@
 /**
- * Title of Project
+ * No-No Box
  * Agustin Maximo Lee
  *
- * Description of this prototype goes here.
+ * A shy creature peeks out of a box, gets nervous as the mouse gets
+ * closer, and hides completely once the mouse gets too close.
  */
 
 "use strict";
