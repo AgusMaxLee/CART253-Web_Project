@@ -2,7 +2,7 @@
 
 Agustin Maximo Lee
 
-[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/conditionals-prototype/prototype-2/)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/conditionals-prototype/no-no-box/)
 
 ## Description
 
