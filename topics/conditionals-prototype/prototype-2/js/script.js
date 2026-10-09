@@ -15,8 +15,10 @@ let boxSize = 150;
 // The creature's size (it sits at the same position as the box)
 let creatureSize = 60;
 
-// How close the mouse needs to be before the creature hides
+// How close the mouse needs to be before the creature hides,
+// and before it starts looking nervous
 let hideDistance = 100;
+let nervousDistance = 200;
 
 /**
  * Creates the canvas
@@ -33,11 +35,15 @@ function draw() {
 
     drawBox();
 
-    // Only draw the creature if the mouse isn't too close
+    // How close is the mouse, and which face should that trigger?
     const mouseDistance = dist(mouseX, mouseY, boxX, boxY);
-    if (mouseDistance > hideDistance) {
-        drawCreature();
+
+    if (mouseDistance > nervousDistance) {
+        drawCreature(false);
+    } else if (mouseDistance > hideDistance) {
+        drawCreature(true);
     }
+    // Otherwise, too close - don't draw the creature at all (it's hiding)
 }
 
 /**
@@ -54,23 +60,30 @@ function drawBox() {
 }
 
 /**
- * Draws a little circle creature with a face
+ * Draws a little circle creature with a face.
+ * If nervous is true, it gets wide eyes and a flat mouth instead
+ * of its normal calm face.
  */
-function drawCreature() {
+function drawCreature(nervous) {
     push();
     noStroke();
     fill(240, 200, 60);
     circle(boxX, boxY, creatureSize);
 
-    // Eyes
+    // Eyes (bigger when nervous)
     fill(0);
-    circle(boxX - 10, boxY - 5, 6);
-    circle(boxX + 10, boxY - 5, 6);
+    const eyeSize = nervous ? 10 : 6;
+    circle(boxX - 10, boxY - 5, eyeSize);
+    circle(boxX + 10, boxY - 5, eyeSize);
 
-    // Mouth
+    // Mouth (a flat worried line when nervous, a smile otherwise)
     noFill();
     stroke(0);
     strokeWeight(2);
-    arc(boxX, boxY + 5, 20, 15, 0, PI);
+    if (nervous) {
+        line(boxX - 8, boxY + 10, boxX + 8, boxY + 10);
+    } else {
+        arc(boxX, boxY + 5, 20, 15, 0, PI);
+    }
     pop();
 }
