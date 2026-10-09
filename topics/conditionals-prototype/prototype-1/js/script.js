@@ -1,8 +1,9 @@
 /**
- * Title of Project
+ * Mystery Gift
  * Agustin Maximo Lee
  *
- * Description of this prototype goes here.
+ * Click the gift box to reveal one of 5 random outcomes, each with
+ * its own sound effect.
  */
 
 "use strict";
