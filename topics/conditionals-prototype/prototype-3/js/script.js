@@ -62,8 +62,23 @@ function draw() {
         }
     }
 
+    drawQuadrantLines();
+
     push();
     imageMode(CENTER);
     image(clownImg, clownX + offsetX, clownY + offsetY, clownSize, clownSize);
+    pop();
+}
+
+/**
+ * Draws a cross dividing the canvas into its 4 quadrants, so it's
+ * clear where one behaviour ends and the next begins
+ */
+function drawQuadrantLines() {
+    push();
+    stroke(0, 80);
+    strokeWeight(2);
+    line(width / 2, 0, width / 2, height);
+    line(0, height / 2, width, height / 2);
     pop();
 }
