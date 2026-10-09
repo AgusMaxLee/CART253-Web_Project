@@ -1,16 +1,22 @@
-# TITLE OF PROJECT
+# FOUR MOODS
 
 Agustin Maximo Lee
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/conditionals-prototype/prototype-3/)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is.
+> The canvas is split into 4 quadrants, each with its own colour and its own clown behaviour, decided entirely by conditionals checking the mouse's position. Move your mouse into each quadrant (a cross marks the boundaries) to see the clown react differently:
+>
+> - **Red (top-left):** shakes nervously in place.
+> - **Blue (top-right):** slowly drifts downward, wrapping back to the top.
+> - **Green (bottom-left):** calmly sways side to side.
+> - **Yellow (bottom-right):** floats gently upward, wrapping back to the bottom.
 
 ## Attribution
 
 > - This project uses [p5.js](https://p5js.org).
+> - The clown image is a capture of the clown from the Apple emoji character set.
 
 ## License
 

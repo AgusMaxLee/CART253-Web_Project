@@ -1,8 +1,11 @@
 /**
- * Title of Project
+ * Four Moods
  * Agustin Maximo Lee
  *
- * Description of this prototype goes here.
+ * The canvas is split into 4 coloured quadrants based on mouse
+ * position, and a clown moves differently depending on which
+ * quadrant the mouse is in: shaking, drifting down, swaying, or
+ * floating up.
  */
 
 "use strict";
