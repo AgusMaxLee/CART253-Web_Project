@@ -33,3 +33,15 @@
 > Still, I don't see it as wasted time. There is clearly a lot more to experiment with here, and I'd like to come back to this house later and actually add the collectables and sounds I had in mind.
 
 ![Screenshot of Mr. Impossible's House](./images/page3-screenshot.png)
+
+## October 8, 2026
+
+> This week's prototypes mostly came from stuff I saw in class like a few examples we looked at made it pretty obvious where the conditionals were, so starting was honestly way easier than other weeks.
+
+> What surprised me the most is how dumb some of my mistakes were, and how simple the fix usually turned out to be once I actually found it like just moving a line up or changing the name of a function... Feels like every time I'm stuck on something for way too long, the real problem ends up being one tiny thing.
+
+> Conditionals themselves are a pretty simple idea once it clicks, so I wanted the if/else logic to be easy to spot in the code for each one. Part of it is also that I just didn't have a ton of time to dig into these properly this week, so keeping them small and simple was kind of the only realistic option too.
+
+> I think thats also what I hope someone else gets from looking at these: a clear "this condition leads to this outcome," without having to dig through a bunch of other stuff first. Mystery Gift, No-No Box, and Four Moods each show a different flavor of if/else, but all stay easy to follow.
+
+![Screenshot of the conditionals prototypes](./images/page4-screenshot.png)
