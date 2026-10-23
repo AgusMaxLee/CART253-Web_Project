@@ -11,6 +11,9 @@
 // Which screen is currently showing
 let gameState = "start";
 
+// The background image
+let bgImg;
+
 // All the words that can appear
 const words = ["noob", "loot", "spawn", "combo", "pixel", "quest", "boss",
     "glitch", "respawn", "nerf", "buff", "clutch", "camper", "lag", "level",
@@ -30,8 +33,9 @@ let lane3 = { x: 400, word: "", y: 0, buffer: "", active: false };
 /**
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
 */
-function setup() {
+async function setup() {
     createCanvas(500, 600);
+    bgImg = await loadImage('assets/images/type_game_background.jpg');
 }
 
 
@@ -39,7 +43,7 @@ function setup() {
  * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
 */
 function draw() {
-    background(20);
+    image(bgImg, 0, 0, width, height);
 
     if (gameState === "start") {
         drawMessageScreen("Type Mania", "Click to Start");
