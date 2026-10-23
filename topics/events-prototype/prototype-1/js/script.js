@@ -16,10 +16,11 @@ const words = ["noob", "loot", "spawn", "combo", "pixel", "quest", "boss",
     "glitch", "respawn", "nerf", "buff", "clutch", "camper", "lag", "level",
     "potion", "sprint", "critical", "achievement", "legendary"];
 
-// Which word is currently falling, and how far down it's gotten
+// Which word is currently falling, how far down it's gotten, and how fast
 let wordIndex = 0;
 let currentWord = words[wordIndex];
 let wordY = 0;
+let wordSpeed = 1;
 
 // What's been typed so far toward the current word
 let typedBuffer = "";
@@ -39,55 +40,78 @@ function draw() {
     background(20);
 
     if (gameState === "start") {
-        drawStartScreen();
+        drawMessageScreen("Type Mania", "Click to Start");
     } else if (gameState === "playing") {
         updateAndDrawPlaying();
+    } else if (gameState === "gameover") {
+        drawMessageScreen("GAME OVER", "Click to Restart");
+    } else if (gameState === "victory") {
+        drawMessageScreen("VICTORY!", "Click to Restart");
     }
 }
 
 /**
- * Draws the "click to start" message
+ * Draws a big title and a smaller instruction line, centred on the canvas
  */
-function drawStartScreen() {
+function drawMessageScreen(title, instruction) {
     push();
     fill(255);
     textAlign(CENTER, CENTER);
-    textSize(32);
-    text("Click to Start", width / 2, height / 2);
+    textSize(40);
+    text(title, width / 2, height / 2 - 20);
+    textSize(20);
+    text(instruction, width / 2, height / 2 + 30);
     pop();
 }
 
 /**
- * Moves the word down a little every frame, looping back to the top
- * once it reaches the bottom
+ * Moves the word down a little every frame, ending the game if it
+ * reaches the bottom, and draws the word with the typed part in green
  */
 function updateAndDrawPlaying() {
-    wordY += 1;
+    wordY += wordSpeed;
 
     if (wordY > height) {
-        wordY = 0;
+        gameState = "gameover";
+        return;
     }
 
+    // Progress indicator
     push();
     fill(255);
-    textAlign(CENTER, CENTER);
-    textSize(32);
-    text(currentWord, width / 2, wordY);
+    textAlign(LEFT, TOP);
+    textSize(16);
+    text("Word " + (wordIndex + 1) + " / " + words.length, 10, 10);
     pop();
 
+    // The word itself, with the typed part shown in green
+    const matched = currentWord.substring(0, typedBuffer.length);
+    const remaining = currentWord.substring(typedBuffer.length);
+
     push();
+    textAlign(LEFT, CENTER);
+    textSize(32);
+    const totalWidth = textWidth(currentWord);
+    const startX = width / 2 - totalWidth / 2;
+
+    fill(80, 220, 100);
+    text(matched, startX, wordY);
+
     fill(255);
-    textAlign(CENTER, CENTER);
-    textSize(18);
-    text(typedBuffer, width / 2, wordY + 30);
+    text(remaining, startX + textWidth(matched), wordY);
     pop();
 }
 
 /**
  * Builds up typedBuffer one letter at a time as long as it still
- * matches the start of currentWord, or resets it on a mistake
+ * matches the start of currentWord, advancing to the next word (or
+ * to victory) once it's fully typed, or resetting it on a mistake
  */
 function keyTyped() {
+    if (gameState !== "playing") {
+        return;
+    }
+
     const attempt = typedBuffer + key;
 
     if (currentWord.toLowerCase().startsWith(attempt.toLowerCase())) {
@@ -98,11 +122,12 @@ function keyTyped() {
             wordIndex++;
 
             if (wordIndex >= words.length) {
-                wordIndex = 0;
+                gameState = "victory";
+            } else {
+                currentWord = words[wordIndex];
+                wordY = 20;
+                wordSpeed += 0.1;
             }
-
-            currentWord = words[wordIndex];
-            wordY = 0;
         }
     } else {
         typedBuffer = "";
@@ -110,10 +135,22 @@ function keyTyped() {
 }
 
 /**
- * Starts the game the moment the player clicks, if its on the start screen
+ * Clicking (re)starts the game whenever its not already in progress
  */
 function mousePressed() {
-    if (gameState === "start") {
-        gameState = "playing";
+    if (gameState !== "playing") {
+        startGame();
     }
+}
+
+/**
+ * Resets everything and begins a fresh run
+ */
+function startGame() {
+    wordIndex = 0;
+    currentWord = words[wordIndex];
+    typedBuffer = "";
+    wordY = 20;
+    wordSpeed = 1;
+    gameState = "playing";
 }
