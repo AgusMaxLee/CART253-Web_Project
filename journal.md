@@ -45,3 +45,23 @@
 > I think thats also what I hope someone else gets from looking at these: a clear "this condition leads to this outcome," without having to dig through a bunch of other stuff first. Mystery Gift, No-No Box, and Four Moods each show a different flavor of if/else, but all stay easy to follow.
 
 ![Screenshot of the conditionals prototypes](./images/page4-screenshot.png)
+
+## October 22, 2026
+
+> Gonna be honest in this one: I didnt make three prototypes this week, just one. I personally didnt have the time to build three separate things, so instead I put everything into making one really polished prototype instead.
+
+> For like the last week ive been wanting to make a Type Mania clone (one of those typing games where words fall and you have to type them before they hit the ground). I used to play something like that a while back and I genuinely cant find it anywhere online anymore, so I figured Id just build my own version instead of hunting for it.
+
+> What surprised me is that the thing kind of built itself into something different than what I planned. I started with a generic word list, but once the whole game was working I swapped it for League of Legends post-game slang instead, just for fun, and now its basically a "tilt simulator" more than a typing game. Funny how that happened completely by accident.
+
+> The events stuff (mousePressed, keyTyped) ended up being more intuitive than I expected, way more than variables or conditionals were. It just makes sense: something happens, code runs, done.
+
+> The part that actually took me a while to wrap my head around was the typing buffer. Each falling word has its own little "buffer" string that starts empty and grows one letter at a time as you type, but only if the letter still matches where you are in the word, if it doesnt, the whole buffer just resets back to empty and you start that word over. Took me a bit to get why it has to check "does this still match the start of the word" every single keystroke instead of just checking the full word at the end, but it clicked once I searched it online. Typing happens one character at a time, so the game needs to know if youre still on track after every single key, not just at the end. With three words falling at once, each one needed its own separate buffer too, so typing one word doesnt mess with the progress of the other two.
+
+> Honestly the hardest part of the whole thing wasnt even the typing logic though, it was lining up the colored part of the text (green for what youve typed, white for whats left) so it actually looks like one continuous word instead of two separate chunks. Had to measure the pixel width of the typed part first just to know where the white part should start drawing from. Small detail, but it took way more fiddling than I expected for something that just looks like "a word turning green as you type it."
+
+> What I hope someone gets from playing it is just a dumb laugh, specially if theyve played League before and know exactly what "report jungle" or "ff15" means.
+
+> Id like to actually go back and build the other two prototypes eventually, but for now Im proud of how polished this one turned out despite running out of time. No excuses, shouldve been able to finish 3 of them with a lot of spare time.
+
+![Screenshot of Tilt Simulator](./images/page5-screenshot.png)

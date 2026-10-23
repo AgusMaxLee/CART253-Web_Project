@@ -38,7 +38,7 @@ let lanes = [
  * Creates the canvas, loads the background image, and sets the font
  */
 async function setup() {
-    createCanvas(1000, 600);
+    createCanvas(1000, 500);
     bgImg = await loadImage('assets/images/type_game_background.jpg');
     textFont('Press Start 2P');
 }
@@ -65,6 +65,13 @@ function draw() {
  * Draws a big title and a smaller instruction line, centred on the canvas
  */
 function drawMessageScreen(title, instruction) {
+    // Darken the background image so the text stands out
+    push();
+    fill(0, 150);
+    noStroke();
+    rect(0, 0, width, height);
+    pop();
+
     push();
     fill(255);
     textAlign(CENTER, CENTER);
