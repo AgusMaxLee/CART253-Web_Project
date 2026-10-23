@@ -36,6 +36,7 @@ let lane3 = { x: 400, word: "", y: 0, buffer: "", active: false };
 async function setup() {
     createCanvas(500, 600);
     bgImg = await loadImage('assets/images/type_game_background.jpg');
+    textFont('Press Start 2P');
 }
 
 
