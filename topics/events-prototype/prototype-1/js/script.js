@@ -11,8 +11,14 @@
 // Which screen is currently showing
 let gameState = "start";
 
-// The word that falls, and how far down it's gotten
-let currentWord = "noob";
+// All the words that can appear
+const words = ["noob", "loot", "spawn", "combo", "pixel", "quest", "boss",
+    "glitch", "respawn", "nerf", "buff", "clutch", "camper", "lag", "level",
+    "potion", "sprint", "critical", "achievement", "legendary"];
+
+// Which word is currently falling, and how far down it's gotten
+let wordIndex = 0;
+let currentWord = words[wordIndex];
 let wordY = 0;
 
 // What's been typed so far toward the current word
@@ -89,6 +95,14 @@ function keyTyped() {
 
         if (typedBuffer === currentWord) {
             typedBuffer = "";
+            wordIndex++;
+
+            if (wordIndex >= words.length) {
+                wordIndex = 0;
+            }
+
+            currentWord = words[wordIndex];
+            wordY = 0;
         }
     } else {
         typedBuffer = "";
