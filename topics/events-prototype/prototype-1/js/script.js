@@ -28,16 +28,16 @@ let wordsCompleted = 0;
 
 // Three independent falling words, each with its own horizontal spot
 let lanes = [
-    { x: 150, word: "", y: 0, buffer: "", active: false },
-    { x: 400, word: "", y: 0, buffer: "", active: false },
-    { x: 650, word: "", y: 0, buffer: "", active: false }
+    { x: 170, word: "", y: 0, buffer: "", active: false },
+    { x: 500, word: "", y: 0, buffer: "", active: false },
+    { x: 830, word: "", y: 0, buffer: "", active: false }
 ];
 
 /**
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
 */
 async function setup() {
-    createCanvas(800, 600);
+    createCanvas(1000, 600);
     bgImg = await loadImage('assets/images/type_game_background.jpg');
     textFont('Press Start 2P');
 }
