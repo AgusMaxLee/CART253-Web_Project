@@ -26,15 +26,15 @@ let nextWordIndex = 0;
 let wordsCompleted = 0;
 
 // Three independent falling words, each with its own horizontal spot
-let lane1 = { x: 100, word: "", y: 0, buffer: "", active: false };
-let lane2 = { x: 250, word: "", y: 0, buffer: "", active: false };
-let lane3 = { x: 400, word: "", y: 0, buffer: "", active: false };
+let lane1 = { x: 150, word: "", y: 0, buffer: "", active: false };
+let lane2 = { x: 400, word: "", y: 0, buffer: "", active: false };
+let lane3 = { x: 650, word: "", y: 0, buffer: "", active: false };
 
 /**
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
 */
 async function setup() {
-    createCanvas(500, 600);
+    createCanvas(800, 600);
     bgImg = await loadImage('assets/images/type_game_background.jpg');
     textFont('Press Start 2P');
 }
