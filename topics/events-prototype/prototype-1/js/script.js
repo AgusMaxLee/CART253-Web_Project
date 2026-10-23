@@ -50,7 +50,7 @@ function draw() {
     image(bgImg, 0, 0, width, height);
 
     if (gameState === "start") {
-        drawMessageScreen("Type Mania", "Click to Start");
+        drawMessageScreen("Tilt Simulator", "Click to Start");
     } else if (gameState === "playing") {
         updateAndDrawPlaying();
     } else if (gameState === "gameover") {
