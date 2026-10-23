@@ -15,9 +15,10 @@ let gameState = "start";
 let bgImg;
 
 // All the words that can appear
-const words = ["noob", "loot", "spawn", "combo", "pixel", "quest", "boss",
-    "glitch", "respawn", "nerf", "buff", "clutch", "camper", "lag", "level",
-    "potion", "sprint", "critical", "achievement", "legendary"];
+const words = ["gg ez", "team diff", "ff15", "report jungle", "skill issue",
+    "uninstall", "diff", "carried", "int", "throw", "outplayed", "tilted",
+    "smurf", "hardstuck", "feeder", "dodge", "afk", "gg wp", "nerf this",
+    "ez clap"];
 
 // How fast words fall, which words haven't been handed out to a lane
 // yet, and how many have been successfully typed so far
@@ -26,9 +27,11 @@ let remainingWords = [];
 let wordsCompleted = 0;
 
 // Three independent falling words, each with its own horizontal spot
-let lane1 = { x: 150, word: "", y: 0, buffer: "", active: false };
-let lane2 = { x: 400, word: "", y: 0, buffer: "", active: false };
-let lane3 = { x: 650, word: "", y: 0, buffer: "", active: false };
+let lanes = [
+    { x: 150, word: "", y: 0, buffer: "", active: false },
+    { x: 400, word: "", y: 0, buffer: "", active: false },
+    { x: 650, word: "", y: 0, buffer: "", active: false }
+];
 
 /**
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
@@ -82,9 +85,9 @@ function updateAndDrawPlaying() {
     text("Typed " + wordsCompleted + " / " + words.length, 10, 10);
     pop();
 
-    updateAndDrawLane(lane1);
-    updateAndDrawLane(lane2);
-    updateAndDrawLane(lane3);
+    for (let i = 0; i < lanes.length; i++) {
+        updateAndDrawLane(lanes[i]);
+    }
 }
 
 /**
@@ -128,9 +131,9 @@ function keyTyped() {
         return;
     }
 
-    tryLetterOnLane(lane1, key);
-    tryLetterOnLane(lane2, key);
-    tryLetterOnLane(lane3, key);
+    for (let i = 0; i < lanes.length; i++) {
+        tryLetterOnLane(lanes[i], key);
+    }
 }
 
 /**
@@ -178,9 +181,9 @@ function startGame() {
     remainingWords = words.slice();
     wordsCompleted = 0;
 
-    spawnLane(lane1);
-    spawnLane(lane2);
-    spawnLane(lane3);
+    for (let i = 0; i < lanes.length; i++) {
+        spawnLane(lanes[i]);
+    }
 
     gameState = "playing";
 }
