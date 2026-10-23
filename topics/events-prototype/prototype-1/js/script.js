@@ -15,6 +15,9 @@ let gameState = "start";
 let currentWord = "noob";
 let wordY = 0;
 
+// What's been typed so far toward the current word
+let typedBuffer = "";
+
 /**
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
 */
@@ -65,6 +68,31 @@ function updateAndDrawPlaying() {
     textSize(32);
     text(currentWord, width / 2, wordY);
     pop();
+
+    push();
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(18);
+    text(typedBuffer, width / 2, wordY + 30);
+    pop();
+}
+
+/**
+ * Builds up typedBuffer one letter at a time as long as it still
+ * matches the start of currentWord, or resets it on a mistake
+ */
+function keyTyped() {
+    const attempt = typedBuffer + key;
+
+    if (currentWord.toLowerCase().startsWith(attempt.toLowerCase())) {
+        typedBuffer = attempt;
+
+        if (typedBuffer === currentWord) {
+            typedBuffer = "";
+        }
+    } else {
+        typedBuffer = "";
+    }
 }
 
 /**
