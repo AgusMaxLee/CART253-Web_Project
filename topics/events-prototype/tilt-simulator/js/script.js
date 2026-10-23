@@ -2,7 +2,7 @@
  * Tilt Simulator
  * Agustin Maximo Lee
  *
- * Three League of Legends post-game phrases fall at once. Type each
+ * League of Legends post-game phrases fall. Type each
  * one before it reaches the bottom, or it's game over. Clear all 20
  * to win.
  */
@@ -16,10 +16,10 @@ let gameState = "start";
 let bgImg;
 
 // All the words that can appear
-const words = ["gg ez", "team diff", "ff15", "report jungle", "skill issue",
-    "uninstall", "diff", "carried", "int", "throw", "outplayed", "tilted",
-    "smurf", "hardstuck", "feeder", "dodge", "afk", "gg wp", "nerf this",
-    "ez clap"];
+const words = ["gg ez", "team diff", "ff15", "report jgl", "skill issue",
+    "uninstall", "top gap", "carried", "int", "throw", "outplayed", "tilted",
+    "smurf", "hardstuck", "feeder", "bad game", "afk", "gg wp", "lucky",
+    "yo mama"];
 
 // How fast words fall, which words haven't been handed out to a lane
 // yet, and how many have been successfully typed so far
