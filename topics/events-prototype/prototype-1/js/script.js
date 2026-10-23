@@ -16,14 +16,16 @@ const words = ["noob", "loot", "spawn", "combo", "pixel", "quest", "boss",
     "glitch", "respawn", "nerf", "buff", "clutch", "camper", "lag", "level",
     "potion", "sprint", "critical", "achievement", "legendary"];
 
-// Which word is currently falling, how far down it's gotten, and how fast
-let wordIndex = 0;
-let currentWord = words[wordIndex];
-let wordY = 0;
+// How fast words fall, which word comes next, and how many have
+// been successfully typed so far
 let wordSpeed = 1;
+let nextWordIndex = 0;
+let wordsCompleted = 0;
 
-// What's been typed so far toward the current word
-let typedBuffer = "";
+// Three independent falling words, each with its own horizontal spot
+let lane1 = { x: 100, word: "", y: 0, buffer: "", active: false };
+let lane2 = { x: 250, word: "", y: 0, buffer: "", active: false };
+let lane3 = { x: 400, word: "", y: 0, buffer: "", active: false };
 
 /**
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
@@ -65,72 +67,92 @@ function drawMessageScreen(title, instruction) {
 }
 
 /**
- * Moves the word down a little every frame, ending the game if it
- * reaches the bottom, and draws the word with the typed part in green
+ * Updates and draws all three lanes
  */
 function updateAndDrawPlaying() {
-    wordY += wordSpeed;
-
-    if (wordY > height) {
-        gameState = "gameover";
-        return;
-    }
-
-    // Progress indicator
     push();
     fill(255);
     textAlign(LEFT, TOP);
     textSize(16);
-    text("Word " + (wordIndex + 1) + " / " + words.length, 10, 10);
+    text("Typed " + wordsCompleted + " / " + words.length, 10, 10);
     pop();
 
-    // The word itself, with the typed part shown in green
-    const matched = currentWord.substring(0, typedBuffer.length);
-    const remaining = currentWord.substring(typedBuffer.length);
+    updateAndDrawLane(lane1);
+    updateAndDrawLane(lane2);
+    updateAndDrawLane(lane3);
+}
+
+/**
+ * Moves one lane's word down (if it has one), draws it with the typed
+ * part in green, and ends the game if it reaches the bottom
+ */
+function updateAndDrawLane(lane) {
+    if (!lane.active) {
+        return;
+    }
+
+    lane.y += wordSpeed;
+
+    if (lane.y > height) {
+        gameState = "gameover";
+        return;
+    }
+
+    const matched = lane.word.substring(0, lane.buffer.length);
+    const remaining = lane.word.substring(lane.buffer.length);
 
     push();
     textAlign(LEFT, CENTER);
-    textSize(32);
-    const totalWidth = textWidth(currentWord);
-    const startX = width / 2 - totalWidth / 2;
+    textSize(28);
+    const startX = lane.x - textWidth(lane.word) / 2;
 
     fill(80, 220, 100);
-    text(matched, startX, wordY);
+    text(matched, startX, lane.y);
 
     fill(255);
-    text(remaining, startX + textWidth(matched), wordY);
+    text(remaining, startX + textWidth(matched), lane.y);
     pop();
 }
 
 /**
- * Builds up typedBuffer one letter at a time as long as it still
- * matches the start of currentWord, advancing to the next word (or
- * to victory) once it's fully typed, or resetting it on a mistake
+ * Checks every character typed while playing against each active
+ * lane, advancing whichever one it still matches
  */
 function keyTyped() {
     if (gameState !== "playing") {
         return;
     }
 
-    const attempt = typedBuffer + key;
+    tryLetterOnLane(lane1, key);
+    tryLetterOnLane(lane2, key);
+    tryLetterOnLane(lane3, key);
+}
 
-    if (currentWord.toLowerCase().startsWith(attempt.toLowerCase())) {
-        typedBuffer = attempt;
+/**
+ * Tries adding one typed letter to one lane's progress
+ */
+function tryLetterOnLane(lane, letter) {
+    if (!lane.active) {
+        return;
+    }
 
-        if (typedBuffer === currentWord) {
-            typedBuffer = "";
-            wordIndex++;
+    const attempt = lane.buffer + letter;
 
-            if (wordIndex >= words.length) {
+    if (lane.word.toLowerCase().startsWith(attempt.toLowerCase())) {
+        lane.buffer = attempt;
+
+        if (lane.buffer.length === lane.word.length) {
+            wordsCompleted++;
+            wordSpeed += 0.05;
+
+            if (wordsCompleted >= words.length) {
                 gameState = "victory";
             } else {
-                currentWord = words[wordIndex];
-                wordY = 20;
-                wordSpeed += 0.1;
+                spawnLane(lane);
             }
         }
     } else {
-        typedBuffer = "";
+        lane.buffer = "";
     }
 }
 
@@ -144,13 +166,33 @@ function mousePressed() {
 }
 
 /**
- * Resets everything and begins a fresh run
+ * Resets everything and begins a fresh run, seeding all 3 lanes
  */
 function startGame() {
-    wordIndex = 0;
-    currentWord = words[wordIndex];
-    typedBuffer = "";
-    wordY = 20;
     wordSpeed = 1;
+    nextWordIndex = 0;
+    wordsCompleted = 0;
+
+    spawnLane(lane1);
+    spawnLane(lane2);
+    spawnLane(lane3);
+
     gameState = "playing";
+}
+
+/**
+ * Gives a lane the next word in the list and sends it back to the
+ * top, or deactivates it if every word has already been handed out
+ */
+function spawnLane(lane) {
+    if (nextWordIndex >= words.length) {
+        lane.active = false;
+        return;
+    }
+
+    lane.word = words[nextWordIndex];
+    nextWordIndex++;
+    lane.y = 20;
+    lane.buffer = "";
+    lane.active = true;
 }
