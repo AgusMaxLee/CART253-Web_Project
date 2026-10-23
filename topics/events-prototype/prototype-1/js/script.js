@@ -8,8 +8,12 @@
 
 "use strict";
 
-// Which screen we're currently showing
+// Which screen is currently showing
 let gameState = "start";
+
+// The word that falls, and how far down it's gotten
+let currentWord = "noob";
+let wordY = 0;
 
 /**
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
@@ -27,6 +31,8 @@ function draw() {
 
     if (gameState === "start") {
         drawStartScreen();
+    } else if (gameState === "playing") {
+        updateAndDrawPlaying();
     }
 }
 
@@ -43,7 +49,26 @@ function drawStartScreen() {
 }
 
 /**
- * Starts the game the moment the player clicks, if we're on the start screen
+ * Moves the word down a little every frame, looping back to the top
+ * once it reaches the bottom
+ */
+function updateAndDrawPlaying() {
+    wordY += 1;
+
+    if (wordY > height) {
+        wordY = 0;
+    }
+
+    push();
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    text(currentWord, width / 2, wordY);
+    pop();
+}
+
+/**
+ * Starts the game the moment the player clicks, if its on the start screen
  */
 function mousePressed() {
     if (gameState === "start") {
