@@ -1,9 +1,10 @@
 /**
- * Title of Project
- * Author Name
+ * Tilt Simulator
+ * Agustin Maximo Lee
  *
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Three League of Legends post-game phrases fall at once. Type each
+ * one before it reaches the bottom, or it's game over. Clear all 20
+ * to win.
  */
 
 "use strict";
@@ -34,8 +35,8 @@ let lanes = [
 ];
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
+ * Creates the canvas, loads the background image, and sets the font
+ */
 async function setup() {
     createCanvas(1000, 600);
     bgImg = await loadImage('assets/images/type_game_background.jpg');
@@ -44,8 +45,8 @@ async function setup() {
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
-*/
+ * Draws whichever screen matches the current game state
+ */
 function draw() {
     image(bgImg, 0, 0, width, height);
 
