@@ -19,10 +19,10 @@ const words = ["noob", "loot", "spawn", "combo", "pixel", "quest", "boss",
     "glitch", "respawn", "nerf", "buff", "clutch", "camper", "lag", "level",
     "potion", "sprint", "critical", "achievement", "legendary"];
 
-// How fast words fall, which word comes next, and how many have
-// been successfully typed so far
+// How fast words fall, which words haven't been handed out to a lane
+// yet, and how many have been successfully typed so far
 let wordSpeed = 1;
-let nextWordIndex = 0;
+let remainingWords = [];
 let wordsCompleted = 0;
 
 // Three independent falling words, each with its own horizontal spot
@@ -175,7 +175,7 @@ function mousePressed() {
  */
 function startGame() {
     wordSpeed = 1;
-    nextWordIndex = 0;
+    remainingWords = words.slice();
     wordsCompleted = 0;
 
     spawnLane(lane1);
@@ -186,17 +186,20 @@ function startGame() {
 }
 
 /**
- * Gives a lane the next word in the list and sends it back to the
- * top, or deactivates it if every word has already been handed out
+ * Gives a lane a random word that hasn't been used yet this run and
+ * sends it back to the top, or deactivates it if none are left
  */
 function spawnLane(lane) {
-    if (nextWordIndex >= words.length) {
+    if (remainingWords.length === 0) {
         lane.active = false;
         return;
     }
 
-    lane.word = words[nextWordIndex];
-    nextWordIndex++;
+    const randomIndex = floor(random(remainingWords.length));
+    lane.word = remainingWords[randomIndex];
+    // Remove that word from the list so it can't be picked again this run
+    remainingWords.splice(randomIndex, 1);
+
     lane.y = 20;
     lane.buffer = "";
     lane.active = true;
