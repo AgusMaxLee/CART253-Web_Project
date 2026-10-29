@@ -29,10 +29,17 @@ let wordsCompleted = 0;
 
 // Three independent falling words, each with its own horizontal spot
 let lanes = [
-    { x: 170, word: "", y: 0, buffer: "", active: false },
-    { x: 500, word: "", y: 0, buffer: "", active: false },
-    { x: 830, word: "", y: 0, buffer: "", active: false }
+    createLane(170),
+    createLane(500),
+    createLane(830)
 ];
+
+/**
+ * Builds and returns a fresh lane object at the given x position
+ */
+function createLane(x) {
+    return { x: x, word: "", y: 0, buffer: "", active: false };
+}
 
 /**
  * Creates the canvas, loads the background image, and sets the font
