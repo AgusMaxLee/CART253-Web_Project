@@ -3,7 +3,7 @@
  * Agustin Maximo Lee
  *
  * You're a mall janitor picking up trash while dodging the people
- * walking by. Bump into one and you're fired - see how much trash
+ * walking by. Bump into one and you're fired! See how much trash
  * you collected before that happened.
  */
 
@@ -118,7 +118,7 @@ function mousePressed() {
 }
 
 /**
- * Resets everything and begins a fresh run
+ * Resets everything and begins a new run
  */
 function startGame() {
     playerX = width / 2;
@@ -164,8 +164,7 @@ function checkPeopleCollisions() {
 }
 
 /**
- * Returns true if two circular things (given by their centre and
- * size) are currently touching
+ * Returns true if two circular things are currently touching
  */
 function isColliding(x1, y1, size1, x2, y2, size2) {
     const distance = dist(x1, y1, x2, y2);
@@ -186,7 +185,7 @@ function spawnPeopleOverTime() {
 
 /**
  * Builds and returns a new person starting at a random edge of the
- * canvas, aimed generally toward the opposite side
+ * canvas, generally toward the opposite side
  */
 function createPerson() {
     const edge = floor(random(4));
@@ -242,7 +241,7 @@ function updateAndDrawPeople() {
 }
 
 /**
- * Returns true if the given person has moved past the canvas edges
+ * Returns true if the person has moved past the canvas edges
  * by more than their own size (with a little margin)
  */
 function isPersonOffScreen(person) {
@@ -252,8 +251,8 @@ function isPersonOffScreen(person) {
 }
 
 /**
- * Checks which arrow keys are currently held down and moves the
- * janitor accordingly, keeping them on the canvas
+ * Checks which arrow keys are pressed and moves the
+ * janitor, keeping them on the canvas
  */
 function movePlayer() {
     if (keyIsDown(LEFT_ARROW)) {
