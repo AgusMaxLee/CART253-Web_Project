@@ -110,3 +110,25 @@ Agustin Maximo Lee
 ![Screenshot of the Tilt Simulator prototype](./images/tilt-simulator-screenshot.png)
 
 [View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/events-prototype/tilt-simulator/) | [View code](./topics/events-prototype/tilt-simulator/)
+
+### Functions
+
+#### Tilt Simulator (refactored)
+
+![Screenshot of the Tilt Simulator prototype](./images/tilt-simulator-screenshot.png)
+
+> Reused this week's Tilt Simulator and refactored repeated code into functions (lane creation, the lane loops, collision checks).
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/events-prototype/tilt-simulator/) | [View code](./topics/events-prototype/tilt-simulator/)
+
+#### Mall Janitor Simulator
+
+![Screenshot of the Mall Janitor Simulator prototype](./images/janitor-simulator-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/functions-prototype/mall-janitor-simulator/) | [View code](./topics/functions-prototype/mall-janitor-simulator/)
+
+#### Rock Paper Scissors
+
+![Screenshot of the Rock Paper Scissors prototype](./images/rock-paper-scissors-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/functions-prototype/rock-paper-scissors/) | [View code](./topics/functions-prototype/rock-paper-scissors/)

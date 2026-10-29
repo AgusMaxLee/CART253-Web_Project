@@ -2,7 +2,7 @@
 
 Agustin Maximo Lee
 
-[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/functions-prototype/prototype-2/)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/functions-prototype/mall-janitor-simulator/)
 
 ## Description
 

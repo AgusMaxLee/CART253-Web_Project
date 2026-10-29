@@ -65,3 +65,17 @@
 > Id like to actually go back and build the other two prototypes eventually, but for now Im proud of how polished this one turned out despite running out of time. No excuses, shouldve been able to finish 3 of them with a lot of spare time.
 
 ![Screenshot of Tilt Simulator](./images/page5-screenshot.png)
+
+## October 29, 2026
+
+> This week I liked the process of making something first and then figuring out some weird or funny scenario to give it context afterward. Like with the janitor one, I honestly just wanted to make something closer to "The World's Hardest Game" with dodging stuff, but by the time it was working it turned into this silly mall janitor simulator with random clowns walking across the screen instead of anything actually scary.
+
+> Functions themselves took a bit longer than I expected, mostly because of random errors I didnt see coming, and also because the whole point is supposedly to make the code simpler, so I kept second guessing whether what I was writing actually counted as "doing it right" or if I was just moving the same mess into a different spot.
+
+> For rock paper scissors, I actually started out wanting to build something closer to a dialogue box, like a tiny dating sim where you pick an option and get a response back. But then I realized rock paper scissors uses basically the same logic (pick one of a few choices, compare it to something, get a result) without me having to write an entire love story just to make it work, so I just went with that instead.
+
+> I think the Tilt Simulator refactor ended up being a good example of what this week was actually about: going back into something that already worked and pulling the repeated parts out into functions, instead of building something completely new from scratch.
+
+> Hoping someone playing the janitor game gets a laugh out of how random it feels, and that rock paper scissors feels satisfying enough to keep clicking through a few rounds just to watch the win/loss count go up.
+
+![Screenshot of this week's prototypes](./images/page6-screenshot.png)
