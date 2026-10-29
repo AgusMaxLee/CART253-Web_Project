@@ -19,6 +19,9 @@ let spawnTimer = 0;
 const spawnInterval = 30;
 const bulletSize = 20;
 
+// Whether the player has been hit yet
+let gameOver = false;
+
 /**
  * Creates the canvas
  */
@@ -32,11 +35,51 @@ function setup() {
 function draw() {
     background(20);
 
+    if (gameOver) {
+        drawGameOverScreen();
+        return;
+    }
+
     spawnBulletsOverTime();
     updateAndDrawBullets();
+    checkBulletHits();
 
     movePlayer();
     drawPlayer();
+}
+
+/**
+ * Ends the game if any bullet is currently touching the player
+ */
+function checkBulletHits() {
+    for (let i = 0; i < bullets.length; i++) {
+        const bullet = bullets[i];
+        if (isColliding(playerX, playerY, playerSize, bullet.x, bullet.y, bulletSize)) {
+            gameOver = true;
+            return;
+        }
+    }
+}
+
+/**
+ * Returns true if two circular things (given by their centre and
+ * size) are currently touching
+ */
+function isColliding(x1, y1, size1, x2, y2, size2) {
+    const distance = dist(x1, y1, x2, y2);
+    return distance < (size1 + size2) / 2;
+}
+
+/**
+ * Draws the game over message
+ */
+function drawGameOverScreen() {
+    push();
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    text("GAME OVER", width / 2, height / 2);
+    pop();
 }
 
 /**
