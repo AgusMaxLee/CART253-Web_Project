@@ -1,8 +1,10 @@
 /**
- * Title of Project
+ * Mall Janitor Simulator
  * Agustin Maximo Lee
  *
- * Description of this prototype goes here.
+ * You're a mall janitor picking up trash while dodging the people
+ * walking by. Bump into one and you're fired - see how much trash
+ * you collected before that happened.
  */
 
 "use strict";
@@ -27,10 +29,11 @@ let trash;
 let trashCollected = 0;
 const trashSize = 60;
 
-// The janitor, trash, and mall floor images
+// The janitor, trash, mall floor, and person images
 let janitorImg;
 let trashImg;
 let floorImg;
+let personImg;
 
 /**
  * Creates the canvas, loads the images, and places the first trash
@@ -43,6 +46,7 @@ async function setup() {
     janitorImg = await loadImage('assets/images/Janitor.png');
     trashImg = await loadImage('assets/images/Trash.png');
     floorImg = await loadImage('assets/images/Mall_floor.jpg');
+    personImg = await loadImage('assets/images/clown.png');
 
     trash = createTrash();
 }
@@ -52,6 +56,13 @@ async function setup() {
  */
 function draw() {
     image(floorImg, width / 2, height / 2, width, height);
+
+    // Darken the floor so the janitor, trash, and people stand out more
+    push();
+    fill(0, 100);
+    noStroke();
+    rect(0, 0, width, height);
+    pop();
 
     if (gameState === "start") {
         drawMessageScreen("Mall Janitor Simulator", "Click to Start");
@@ -226,11 +237,7 @@ function updateAndDrawPeople() {
             continue;
         }
 
-        push();
-        noStroke();
-        fill(0);
-        circle(person.x, person.y, personSize);
-        pop();
+        image(personImg, person.x, person.y, personSize, personSize);
     }
 }
 
