@@ -7,55 +7,146 @@
 
 "use strict";
 
-// The player's position, size, and movement speed
+// The janitor's position, size, and movement speed
 let playerX = 300;
 let playerY = 300;
-const playerSize = 30;
+const playerSize = 90;
 const playerSpeed = 4;
 
-// Every bullet currently on screen, and how often a new one spawns
-let bullets = [];
+// Every person currently on screen, and how often a new one spawns
+let people = [];
 let spawnTimer = 0;
 const spawnInterval = 30;
-const bulletSize = 20;
+const personSize = 25;
 
-// Whether the player has been hit yet
-let gameOver = false;
+// Which screen is currently showing
+let gameState = "start";
+
+// The current piece of trash, how many have been picked up, and its size
+let trash;
+let trashCollected = 0;
+const trashSize = 60;
+
+// The janitor, trash, and mall floor images
+let janitorImg;
+let trashImg;
+let floorImg;
 
 /**
- * Creates the canvas
+ * Creates the canvas, loads the images, and places the first trash
  */
-function setup() {
+async function setup() {
     createCanvas(600, 600);
+    imageMode(CENTER);
+    textFont('Bangers');
+
+    janitorImg = await loadImage('assets/images/Janitor.png');
+    trashImg = await loadImage('assets/images/Trash.png');
+    floorImg = await loadImage('assets/images/Mall_floor.jpg');
+
+    trash = createTrash();
 }
 
 /**
- * Moves the player based on which arrow keys are held, then draws it
+ * Draws whichever screen matches the current game state
  */
 function draw() {
-    background(20);
+    image(floorImg, width / 2, height / 2, width, height);
 
-    if (gameOver) {
-        drawGameOverScreen();
-        return;
+    if (gameState === "start") {
+        drawMessageScreen("Mall Janitor Simulator", "Click to Start");
+    } else if (gameState === "playing") {
+        updateAndDrawPlaying();
+    } else if (gameState === "gameover") {
+        drawMessageScreen("YOU'RE FIRED!", "Trash Collected: " + trashCollected);
     }
+}
 
-    spawnBulletsOverTime();
-    updateAndDrawBullets();
-    checkBulletHits();
+/**
+ * Moves the janitor, updates people and trash, and draws everything
+ */
+function updateAndDrawPlaying() {
+    spawnPeopleOverTime();
+    updateAndDrawPeople();
+    checkPeopleCollisions();
+
+    updateAndDrawTrash();
 
     movePlayer();
     drawPlayer();
 }
 
 /**
- * Ends the game if any bullet is currently touching the player
+ * Draws a big title and a smaller instruction line, centred on the canvas
  */
-function checkBulletHits() {
-    for (let i = 0; i < bullets.length; i++) {
-        const bullet = bullets[i];
-        if (isColliding(playerX, playerY, playerSize, bullet.x, bullet.y, bulletSize)) {
-            gameOver = true;
+function drawMessageScreen(title, instruction) {
+    push();
+    fill(0, 150);
+    noStroke();
+    rect(0, 0, width, height);
+    pop();
+
+    push();
+    fill(255, 221, 0);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    text(title, width / 2, height / 2 - 20);
+    textSize(24);
+    text(instruction, width / 2, height / 2 + 30);
+    pop();
+}
+
+/**
+ * Starts (or restarts) the game the moment the player clicks,
+ * if its not already in progress
+ */
+function mousePressed() {
+    if (gameState !== "playing") {
+        startGame();
+    }
+}
+
+/**
+ * Resets everything and begins a fresh run
+ */
+function startGame() {
+    playerX = width / 2;
+    playerY = height / 2;
+    people = [];
+    spawnTimer = 0;
+    trash = createTrash();
+    trashCollected = 0;
+    gameState = "playing";
+}
+
+/**
+ * Builds and returns a new piece of trash at a random position
+ */
+function createTrash() {
+    return { x: random(width), y: random(height) };
+}
+
+/**
+ * Picks up the trash if the janitor is touching it (giving a new
+ * one and increasing the count), then draws it
+ */
+function updateAndDrawTrash() {
+    if (isColliding(playerX, playerY, playerSize, trash.x, trash.y, trashSize)) {
+        trashCollected++;
+        trash = createTrash();
+    }
+
+    image(trashImg, trash.x, trash.y, trashSize, trashSize);
+}
+
+/**
+ * Fires the janitor if any person is currently touching them
+ */
+function checkPeopleCollisions() {
+    for (let i = 0; i < people.length; i++) {
+        const person = people[i];
+        if (isColliding(playerX, playerY, playerSize, person.x, person.y, personSize)) {
+            gameState = "gameover";
             return;
         }
     }
@@ -71,34 +162,22 @@ function isColliding(x1, y1, size1, x2, y2, size2) {
 }
 
 /**
- * Draws the game over message
+ * Adds a new person every spawnInterval frames
  */
-function drawGameOverScreen() {
-    push();
-    fill(255);
-    textAlign(CENTER, CENTER);
-    textSize(32);
-    text("GAME OVER", width / 2, height / 2);
-    pop();
-}
-
-/**
- * Adds a new bullet every spawnInterval frames
- */
-function spawnBulletsOverTime() {
+function spawnPeopleOverTime() {
     spawnTimer++;
 
     if (spawnTimer >= spawnInterval) {
-        bullets.push(createBullet());
+        people.push(createPerson());
         spawnTimer = 0;
     }
 }
 
 /**
- * Builds and returns a new bullet starting at a random edge of the
+ * Builds and returns a new person starting at a random edge of the
  * canvas, aimed generally toward the opposite side
  */
-function createBullet() {
+function createPerson() {
     const edge = floor(random(4));
     const speed = random(2, 5);
 
@@ -134,40 +213,40 @@ function createBullet() {
 }
 
 /**
- * Moves every bullet, draws it, and removes any that have left the canvas
+ * Moves every person, draws them, and removes any that have left the canvas
  */
-function updateAndDrawBullets() {
-    for (let i = bullets.length - 1; i >= 0; i--) {
-        const bullet = bullets[i];
-        bullet.x += bullet.vx;
-        bullet.y += bullet.vy;
+function updateAndDrawPeople() {
+    for (let i = people.length - 1; i >= 0; i--) {
+        const person = people[i];
+        person.x += person.vx;
+        person.y += person.vy;
 
-        if (isBulletOffScreen(bullet)) {
-            bullets.splice(i, 1);
+        if (isPersonOffScreen(person)) {
+            people.splice(i, 1);
             continue;
         }
 
         push();
         noStroke();
-        fill(230, 80, 80);
-        circle(bullet.x, bullet.y, bulletSize);
+        fill(0);
+        circle(person.x, person.y, personSize);
         pop();
     }
 }
 
 /**
- * Returns true if the given bullet has moved past the canvas edges
- * by more than its own size (with a little margin)
+ * Returns true if the given person has moved past the canvas edges
+ * by more than their own size (with a little margin)
  */
-function isBulletOffScreen(bullet) {
-    const margin = bulletSize;
-    return bullet.x < -margin || bullet.x > width + margin ||
-        bullet.y < -margin || bullet.y > height + margin;
+function isPersonOffScreen(person) {
+    const margin = personSize;
+    return person.x < -margin || person.x > width + margin ||
+        person.y < -margin || person.y > height + margin;
 }
 
 /**
  * Checks which arrow keys are currently held down and moves the
- * player accordingly, keeping it on the canvas
+ * janitor accordingly, keeping them on the canvas
  */
 function movePlayer() {
     if (keyIsDown(LEFT_ARROW)) {
@@ -188,12 +267,8 @@ function movePlayer() {
 }
 
 /**
- * Draws the player as a square
+ * Draws the janitor
  */
 function drawPlayer() {
-    push();
-    rectMode(CENTER);
-    fill(80, 160, 240);
-    rect(playerX, playerY, playerSize, playerSize);
-    pop();
+    image(janitorImg, playerX, playerY, playerSize, playerSize);
 }
