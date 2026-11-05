@@ -13,11 +13,14 @@ let lookLeftImg, lookCenterImg, lookRightImg;
 // Peek images (shown after clicking into a direction)
 let peekLeftImg, peekCenterImg, peekRightImg;
 
+// Light images (shown while shining the light during a peek)
+let lightLeftImg, lightCenterImg, lightRightImg;
+
 // Shown briefly while switching from look to peek
 let transitionImg;
 
-// Which overall mode we're in ("look", "transitioning", or "peek"),
-// and which direction we last clicked into
+// Which overall mode we're in ("look", "transitioning", "peek", or
+// "light"), and which direction we last clicked into
 let mode = "look";
 let direction = "center";
 
@@ -39,6 +42,10 @@ async function setup() {
     peekCenterImg = await loadImage('assets/images/Peek_Center.png');
     peekRightImg = await loadImage('assets/images/Peek_Right.png');
 
+    lightLeftImg = await loadImage('assets/images/Light_Left.png');
+    lightCenterImg = await loadImage('assets/images/Light_Center.png');
+    lightRightImg = await loadImage('assets/images/Light_Right.png');
+
     transitionImg = await loadImage('assets/images/Transition.png');
 }
 
@@ -58,6 +65,8 @@ function draw() {
         }
     } else if (mode === "peek") {
         image(getPeekImage(direction), 0, 0, width, height);
+    } else if (mode === "light") {
+        image(getLightImage(direction), 0, 0, width, height);
     }
 }
 
@@ -82,6 +91,10 @@ function mousePressed() {
         direction = getHoverDirection();
         mode = "transitioning";
         transitionTimer = 0;
+    } else if (mode === "peek") {
+        mode = "light";
+    } else if (mode === "light") {
+        mode = "peek";
     }
 }
 
@@ -101,4 +114,13 @@ function getPeekImage(dir) {
     if (dir === "left") return peekLeftImg;
     else if (dir === "right") return peekRightImg;
     else return peekCenterImg;
+}
+
+/**
+ * Returns the light image for a given direction
+ */
+function getLightImage(dir) {
+    if (dir === "left") return lightLeftImg;
+    else if (dir === "right") return lightRightImg;
+    else return lightCenterImg;
 }
