@@ -19,6 +19,12 @@ let lightLeftImg, lightCenterImg, lightRightImg, lightBackImg;
 // Shown briefly while switching between look and peek
 let transitionImg;
 
+// Footsteps while transitioning, the door opening once a peek
+// begins, and the light switch toggling on/off
+let stepsSound;
+let doorSound;
+let lightSound;
+
 // Which overall mode we're in ("look", "transitioning", "peek", or
 // "light"), and which direction we last clicked into
 let mode = "look";
@@ -51,6 +57,10 @@ async function setup() {
     lightBackImg = await loadImage('assets/images/Light_Back.png');
 
     transitionImg = await loadImage('assets/images/Transition.png');
+
+    stepsSound = await loadSound('assets/sounds/Steps.mp3');
+    doorSound = await loadSound('assets/sounds/Door_Open.mp3');
+    lightSound = await loadSound('assets/sounds/Light.mp3');
 }
 
 /**
@@ -68,6 +78,12 @@ function draw() {
         if (transitionTimer >= transitionDuration) {
             mode = transitionTarget;
             transitionTimer = 0;
+
+            // Arrived at a door (not the bottom "back" direction or
+            // the centre one, since neither of those is a real door)
+            if (mode === "peek" && direction !== "back" && direction !== "center") {
+                doorSound.play();
+            }
         }
     } else if (mode === "peek") {
         image(getPeekImage(direction), 0, 0, width, height);
@@ -96,12 +112,14 @@ function getHoverDirection() {
 }
 
 /**
- * Starts a transition toward the given mode ("peek" or "look")
+ * Starts a transition toward the given mode ("peek" or "look"),
+ * playing the footstep sound as we start walking
  */
 function startTransition(target) {
     transitionTarget = target;
     mode = "transitioning";
     transitionTimer = 0;
+    stepsSound.play();
 }
 
 /**
@@ -119,6 +137,7 @@ function mousePressed() {
             startTransition("look");
         } else {
             mode = (mode === "peek") ? "light" : "peek";
+            lightSound.play();
         }
     }
 }
