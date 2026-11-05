@@ -63,6 +63,52 @@ async function setup() {
 }
 
 /**
+ * Draws a face on Mr. Furious that gets angrier-looking as
+ * angerLevel goes from 0 (calm) to 1 (furious): the eyebrows tilt
+ * into a scowl and the mouth flips from a smile into a frown
+ */
+function drawFace(angerLevel) {
+  const leftEyeX = mrFurious.x - 25;
+  const rightEyeX = mrFurious.x + 25;
+  const eyeY = mrFurious.y - 20;
+
+  // Eyes
+  push();
+  noStroke();
+  fill(0);
+  circle(leftEyeX, eyeY, 14);
+  circle(rightEyeX, eyeY, 14);
+  pop();
+
+  // Eyebrows: flat when calm, angled into a V (furrowed) when angry
+  const browY = eyeY - 15;
+  const innerDrop = map(angerLevel, 0, 1, 0, 12);
+
+  push();
+  stroke(0);
+  strokeWeight(4);
+  line(leftEyeX - 12, browY, leftEyeX + 12, browY + innerDrop);
+  line(rightEyeX + 12, browY, rightEyeX - 12, browY + innerDrop);
+  pop();
+
+  // Mouth: curves into a smile when calm, flips into a frown when angry
+  const mouthY = mrFurious.y + 35;
+  const mouthCurve = map(angerLevel, 0, 1, 20, -20);
+
+  push();
+  noFill();
+  stroke(0);
+  strokeWeight(4);
+  bezier(
+    mrFurious.x - 30, mouthY,
+    mrFurious.x - 15, mouthY + mouthCurve,
+    mrFurious.x + 15, mouthY + mouthCurve,
+    mrFurious.x + 30, mouthY
+  );
+  pop();
+}
+
+/**
  * Builds and returns one bird with a random starting position and speed
  */
 function createBird() {
@@ -99,6 +145,10 @@ function draw() {
   fill(mrFurious.fill.r, mrFurious.fill.g, mrFurious.fill.b);
   ellipse(mrFurious.x, mrFurious.y, mrFurious.size);
   pop();
+
+  // 0 = perfectly calm, 1 = as angry as he gets
+  const angerLevel = constrain(map(mrFurious.fill.g, 225, mrFurious.red_limit, 0, 1), 0, 1);
+  drawFace(angerLevel);
 
   // Make Mr. Furious get red
   // Gradually decrease green and blue only if they are above zero
