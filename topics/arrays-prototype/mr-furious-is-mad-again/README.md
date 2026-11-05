@@ -2,7 +2,7 @@
 
 Agustin Maximo Lee
 
-[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/arrays-prototype/prototype-1/)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/arrays-prototype/mr-furious-is-mad-again/)
 
 ## Description
 
