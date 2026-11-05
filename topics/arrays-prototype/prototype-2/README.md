@@ -1,23 +1,19 @@
-# TITLE OF PROJECT
+# NIGHT WATCH
 
-AUTHOR NAME
+Agustin Maximo Lee
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/arrays-prototype/prototype-2/)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+> A small point and click inspired by Five Nights at Freddy's 4. Hover left, right, or center to look that direction, click to walk up and peek through that door, click again to shine the light, and click the bottom of the screen to back away. There's no movement, it's all just swapping between a handful of images depending on where you hover and click.
 
 ## Attribution
 
-This bit should attribute any code, assets or other elements used taken from other sources. For example:
-
-> - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - This project uses [p5.js](https://p5js.org) and [p5.sound](https://p5js.org/reference/#/libraries/p5.sound).
+> - Inspired by the mechanics in Five Nights at Freddy's 4 by Scott Cawthon.
+> - The look/peek/light images are screenshots taken from [this YouTube gameplay video](https://www.youtube.com/watch?v=Ye1owt0Ski4) of Five Nights at Freddy's 4, used here for an educational, non-commercial course prototype.
 
 ## License
-
-This bit could include the license you want to apply to your work. For example:
 
 > This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.

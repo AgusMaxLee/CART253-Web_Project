@@ -1,8 +1,12 @@
 /**
- * Title of Project
+ * Night Watch
  * Agustin Maximo Lee
  *
- * Description of this prototype goes here.
+ * A FNAF 4 style point and click. Hover left, right, or center to
+ * look that way. Click to walk up and peek through that door, click
+ * again to shine the light, and click the bottom of the screen to
+ * back away. No controls besides the mouse, everything is just
+ * swapping between a handful of images.
  */
 
 "use strict";
@@ -22,6 +26,9 @@ let transitionImg;
 
 // An array of screen regions, each one a clickable/hoverable zone
 let zones = [];
+
+// Whether the debug zone outlines are currently visible (press "t" to toggle)
+let showZoneOutlines = false;
 
 // Footsteps while transitioning, the door opening once a peek
 // begins, and the light switch toggling on/off
@@ -97,21 +104,68 @@ function draw() {
         image(getImageForDirection(lookImages, direction), 0, 0, width, height);
     } else if (mode === "transitioning") {
         image(transitionImg, 0, 0, width, height);
-        transitionTimer++;
-        if (transitionTimer >= transitionDuration) {
-            mode = transitionTarget;
-            transitionTimer = 0;
-
-            // Arrived at a door (not the bottom "back" direction or
-            // the centre one, since neither of those is a real door)
-            if (mode === "peek" && direction !== "back" && direction !== "center") {
-                doorSound.play();
-            }
-        }
+        advanceTransition();
     } else if (mode === "peek") {
         image(getImageForDirection(peekImages, direction), 0, 0, width, height);
     } else if (mode === "light") {
         image(getImageForDirection(lightImages, direction), 0, 0, width, height);
+    }
+
+    if (showZoneOutlines) {
+        drawZoneOutlines();
+    }
+}
+
+/**
+ * Draws every zone's rectangle outline and name, so all 4 regions
+ * (including back) are visible on screen for testing
+ */
+function drawZoneOutlines() {
+    push();
+    noFill();
+    stroke(255, 0, 0);
+    strokeWeight(2);
+    textAlign(CENTER, CENTER);
+    textSize(16);
+
+    for (let i = 0; i < zones.length; i++) {
+        const zone = zones[i];
+        rect(zone.x, zone.y, zone.w, zone.h);
+        noStroke();
+        fill(255, 0, 0);
+        text(zone.name, zone.x + zone.w / 2, zone.y + zone.h / 2);
+        noFill();
+        stroke(255, 0, 0);
+    }
+
+    pop();
+}
+
+/**
+ * Toggles the debug zone outlines on/off when "t" is pressed
+ */
+function keyPressed() {
+    if (key === 't' || key === 'T') {
+        showZoneOutlines = !showZoneOutlines;
+    }
+}
+
+/**
+ * Counts the transition down, then switches into whichever mode it
+ * was heading toward, playing the door sound if we just arrived at
+ * a real door
+ */
+function advanceTransition() {
+    transitionTimer++;
+    if (transitionTimer >= transitionDuration) {
+        mode = transitionTarget;
+        transitionTimer = 0;
+
+        // Arrived at a door (not the bottom "back" direction or the
+        // centre one, since neither of those is a real door)
+        if (mode === "peek" && direction !== "back" && direction !== "center") {
+            doorSound.play();
+        }
     }
 }
 
