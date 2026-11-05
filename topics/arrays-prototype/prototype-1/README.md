@@ -1,23 +1,18 @@
-# TITLE OF PROJECT
+# MR. FURIOUS IS MAD AGAIN
 
-AUTHOR NAME
+Agustin Maximo Lee
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/arrays-prototype/prototype-1/)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+> Mr. Furious gets angrier as the sky slowly turns from night to day, same as the original variables challenge. This time he also has a face that changes as he gets madder, going from a calm smile to a frown and finally a wide open scream. A flock of ten birds meet him one at a time instead of just one single bird flying around.
 
 ## Attribution
 
-This bit should attribute any code, assets or other elements used taken from other sources. For example:
-
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - Based on the "Mr. Furious" example by Pippin Barr, extended with a reactive face and an array of birds for this prototype.
 
 ## License
-
-This bit could include the license you want to apply to your work. For example:
 
 > This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.

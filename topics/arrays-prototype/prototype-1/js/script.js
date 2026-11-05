@@ -1,15 +1,15 @@
 /**
- * Mr. Furious (and Friends)
+ * Mr. Furious is Mad Again
  * Agustin Maximo Lee
  *
  * Mr. Furious gets angrier as the night sky turns to day, same as
- * before, but now there's a whole flock of birds pestering him
- * instead of just one.
+ * before. Now he has a face that changes as he gets madder, ending
+ * in a full on scream, and a flock of birds annoy him one at a
+ * time instead of just one single bird.
  *
  * Based on the original "Mr. Furious" example by Pippin Barr, used
- * for the variables-challenge earlier in this course. The single
- * bird from that version has been replaced with an array of many
- * independent birds for this prototype.
+ * for the variables challenge. The single
+ * bird from that version is now an array of many birds.
  */
 
 "use strict";
