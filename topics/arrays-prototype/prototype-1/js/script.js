@@ -44,21 +44,35 @@ let sky = {
   }
 }
 
-// How many birds to create, and the array that holds all of them
+// How many birds there will eventually be, how often a new one
+// appears, and the array that holds whichever ones exist so far
 const numBirds = 10;
+const spawnInterval = 90;
+let spawnTimer = 0;
 let birds = [];
 
 let img;
 
 /**
- * Create the canvas and a whole array of birds
+ * Create the canvas - birds get added one at a time instead of all at once
  */
 async function setup() {
   createCanvas(400, 400);
   img = await loadImage('assets/images/images.jpg');
+}
 
-  for (let i = 0; i < numBirds; i++) {
+/**
+ * Adds one new bird every spawnInterval frames, until there are numBirds
+ */
+function spawnBirdsOverTime() {
+  if (birds.length >= numBirds) {
+    return;
+  }
+
+  spawnTimer++;
+  if (spawnTimer >= spawnInterval) {
     birds.push(createBird());
+    spawnTimer = 0;
   }
 }
 
@@ -179,7 +193,8 @@ function draw() {
   mrFurious.max_Shake = mrFurious.max_Shake + 0.008
   mrFurious.max_Shake = constrain(mrFurious.max_Shake, 200, 250);
 
-  // Move and draw every bird in the array
+  // Add a new bird every so often, then move and draw all of them
+  spawnBirdsOverTime();
   for (let i = 0; i < birds.length; i++) {
     updateAndDrawBird(birds[i]);
   }
