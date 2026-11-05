@@ -1,5 +1,5 @@
 /**
- * Night Watch
+ * FNAF 4 Mechanics
  * Agustin Maximo Lee
  *
  * A FNAF 4 style point and click. Hover left, right, or center to

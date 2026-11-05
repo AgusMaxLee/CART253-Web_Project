@@ -1,8 +1,8 @@
-# NIGHT WATCH
+# FNAF 4 MECHANICS
 
 Agustin Maximo Lee
 
-[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/arrays-prototype/prototype-2/)
+[View this project online](https://agusmaxlee.github.io/CART253-Web_Project/topics/arrays-prototype/fnaf-4-mechanics/)
 
 ## Description
 
