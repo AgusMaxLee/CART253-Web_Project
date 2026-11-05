@@ -20,6 +20,9 @@ let lightImages = [];
 // Shown briefly while switching between look and peek
 let transitionImg;
 
+// An array of screen regions, each one a clickable/hoverable zone
+let zones = [];
+
 // Footsteps while transitioning, the door opening once a peek
 // begins, and the light switch toggling on/off
 let stepsSound;
@@ -70,6 +73,17 @@ async function setup() {
     stepsSound = await loadSound('assets/sounds/Steps.mp3');
     doorSound = await loadSound('assets/sounds/Door_Open.mp3');
     lightSound = await loadSound('assets/sounds/Light.mp3');
+
+    // The bottom strip is "back", checked first so it takes priority
+    // over the left/right/center zones in the corners. Each one is a
+    // rectangle: x, y is its top-left corner, w, h is its size
+    const backHeight = 100;
+    zones = [
+        { name: "back", x: 0, y: height - backHeight, w: width, h: backHeight },
+        { name: "left", x: 0, y: 0, w: width / 3, h: height - backHeight },
+        { name: "right", x: width * 2 / 3, y: 0, w: width / 3, h: height - backHeight },
+        { name: "center", x: width / 3, y: 0, w: width / 3, h: height - backHeight }
+    ];
 }
 
 /**
@@ -78,7 +92,7 @@ async function setup() {
 function draw() {
     if (mode === "look") {
         // "back" has no look image, so fall back to the centre one
-        const hoverZone = getHoverDirection();
+        const hoverZone = getZoneAt(mouseX, mouseY);
         direction = (hoverZone === "back") ? "center" : hoverZone;
         image(getImageForDirection(lookImages, direction), 0, 0, width, height);
     } else if (mode === "transitioning") {
@@ -111,22 +125,24 @@ function getImageForDirection(imagesArray, dir) {
 }
 
 /**
- * Returns "left", "right", "center", or "back" based on where the
- * mouse is. The bottom strip of the screen is checked first, so it
- * takes priority over left/right in the corners
+ * Returns true if the point (px, py) overlaps the rectangle
+ * described by x, y, w, h
  */
-function getHoverDirection() {
-    const backHeight = 100;
+function isPointInRect(px, py, x, y, w, h) {
+    return px >= x && px < x + w && py >= y && py < y + h;
+}
 
-    if (mouseY > height - backHeight) {
-        return "back";
-    } else if (mouseX < width / 3) {
-        return "left";
-    } else if (mouseX > width * 2 / 3) {
-        return "right";
-    } else {
-        return "center";
+/**
+ * Returns the name of whichever zone overlaps the given point
+ */
+function getZoneAt(x, y) {
+    for (let i = 0; i < zones.length; i++) {
+        const zone = zones[i];
+        if (isPointInRect(x, y, zone.x, zone.y, zone.w, zone.h)) {
+            return zone.name;
+        }
     }
+    return "center";
 }
 
 /**
@@ -145,7 +161,7 @@ function startTransition(target) {
  * look, exits back to look from the bottom zone, or toggles the light
  */
 function mousePressed() {
-    const clickedZone = getHoverDirection();
+    const clickedZone = getZoneAt(mouseX, mouseY);
 
     if (mode === "look") {
         direction = clickedZone;
