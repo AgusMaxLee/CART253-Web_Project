@@ -11,12 +11,12 @@
 let lookLeftImg, lookCenterImg, lookRightImg;
 
 // Peek images (shown after clicking into a direction)
-let peekLeftImg, peekCenterImg, peekRightImg;
+let peekLeftImg, peekCenterImg, peekRightImg, peekBackImg;
 
 // Light images (shown while shining the light during a peek)
-let lightLeftImg, lightCenterImg, lightRightImg;
+let lightLeftImg, lightCenterImg, lightRightImg, lightBackImg;
 
-// Shown briefly while switching from look to peek
+// Shown briefly while switching between look and peek
 let transitionImg;
 
 // Which overall mode we're in ("look", "transitioning", "peek", or
@@ -24,7 +24,9 @@ let transitionImg;
 let mode = "look";
 let direction = "center";
 
-// How long we've been transitioning for
+// Used while mode is "transitioning": where we're headed ("peek" or
+// "look"), and how long we've been transitioning for
+let transitionTarget = "";
 let transitionTimer = 0;
 const transitionDuration = 60;
 
@@ -41,10 +43,12 @@ async function setup() {
     peekLeftImg = await loadImage('assets/images/Peek_Left.png');
     peekCenterImg = await loadImage('assets/images/Peek_Center.png');
     peekRightImg = await loadImage('assets/images/Peek_Right.png');
+    peekBackImg = await loadImage('assets/images/Peek_Back.png');
 
     lightLeftImg = await loadImage('assets/images/Light_Left.png');
     lightCenterImg = await loadImage('assets/images/Light_Center.png');
     lightRightImg = await loadImage('assets/images/Light_Right.png');
+    lightBackImg = await loadImage('assets/images/Light_Back.png');
 
     transitionImg = await loadImage('assets/images/Transition.png');
 }
@@ -54,13 +58,15 @@ async function setup() {
  */
 function draw() {
     if (mode === "look") {
-        direction = getHoverDirection();
+        // "back" has no look image, so fall back to the centre one
+        const hoverZone = getHoverDirection();
+        direction = (hoverZone === "back") ? "center" : hoverZone;
         image(getLookImage(direction), 0, 0, width, height);
     } else if (mode === "transitioning") {
         image(transitionImg, 0, 0, width, height);
         transitionTimer++;
         if (transitionTimer >= transitionDuration) {
-            mode = "peek";
+            mode = transitionTarget;
             transitionTimer = 0;
         }
     } else if (mode === "peek") {
@@ -71,10 +77,16 @@ function draw() {
 }
 
 /**
- * Returns "left", "right", or "center" based on where the mouse is
+ * Returns "left", "right", "center", or "back" based on where the
+ * mouse is. The bottom strip of the screen is checked first, so it
+ * takes priority over left/right in the corners
  */
 function getHoverDirection() {
-    if (mouseX < width / 3) {
+    const backHeight = 100;
+
+    if (mouseY > height - backHeight) {
+        return "back";
+    } else if (mouseX < width / 3) {
         return "left";
     } else if (mouseX > width * 2 / 3) {
         return "right";
@@ -84,17 +96,30 @@ function getHoverDirection() {
 }
 
 /**
- * Clicking while in look mode starts a transition into a peek
+ * Starts a transition toward the given mode ("peek" or "look")
+ */
+function startTransition(target) {
+    transitionTarget = target;
+    mode = "transitioning";
+    transitionTimer = 0;
+}
+
+/**
+ * Handles a click depending on the current mode: enters a peek from
+ * look, exits back to look from the bottom zone, or toggles the light
  */
 function mousePressed() {
+    const clickedZone = getHoverDirection();
+
     if (mode === "look") {
-        direction = getHoverDirection();
-        mode = "transitioning";
-        transitionTimer = 0;
-    } else if (mode === "peek") {
-        mode = "light";
-    } else if (mode === "light") {
-        mode = "peek";
+        direction = clickedZone;
+        startTransition("peek");
+    } else if (mode === "peek" || mode === "light") {
+        if (clickedZone === "back") {
+            startTransition("look");
+        } else {
+            mode = (mode === "peek") ? "light" : "peek";
+        }
     }
 }
 
@@ -113,6 +138,7 @@ function getLookImage(dir) {
 function getPeekImage(dir) {
     if (dir === "left") return peekLeftImg;
     else if (dir === "right") return peekRightImg;
+    else if (dir === "back") return peekBackImg;
     else return peekCenterImg;
 }
 
@@ -122,5 +148,6 @@ function getPeekImage(dir) {
 function getLightImage(dir) {
     if (dir === "left") return lightLeftImg;
     else if (dir === "right") return lightRightImg;
+    else if (dir === "back") return lightBackImg;
     else return lightCenterImg;
 }
