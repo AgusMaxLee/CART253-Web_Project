@@ -7,14 +7,15 @@
 
 "use strict";
 
-// Look images (shown while hovering, in "look" mode)
-let lookLeftImg, lookCenterImg, lookRightImg;
+// The four directions, in a fixed order that matches every image array below
+const directions = ["left", "center", "right", "back"];
 
-// Peek images (shown after clicking into a direction)
-let peekLeftImg, peekCenterImg, peekRightImg, peekBackImg;
-
-// Light images (shown while shining the light during a peek)
-let lightLeftImg, lightCenterImg, lightRightImg, lightBackImg;
+// One array per set of images, each lined up with the directions
+// array above (look has no "back" image, so it just repeats the
+// centre one)
+let lookImages = [];
+let peekImages = [];
+let lightImages = [];
 
 // Shown briefly while switching between look and peek
 let transitionImg;
@@ -42,19 +43,27 @@ const transitionDuration = 60;
 async function setup() {
     createCanvas(960, 540);
 
-    lookLeftImg = await loadImage('assets/images/Look_Left.png');
-    lookCenterImg = await loadImage('assets/images/Look_Center.png');
-    lookRightImg = await loadImage('assets/images/Look_Right.png');
+    const lookCenterImg = await loadImage('assets/images/Look_Center.png');
+    lookImages = [
+        await loadImage('assets/images/Look_Left.png'),
+        lookCenterImg,
+        await loadImage('assets/images/Look_Right.png'),
+        lookCenterImg
+    ];
 
-    peekLeftImg = await loadImage('assets/images/Peek_Left.png');
-    peekCenterImg = await loadImage('assets/images/Peek_Center.png');
-    peekRightImg = await loadImage('assets/images/Peek_Right.png');
-    peekBackImg = await loadImage('assets/images/Peek_Back.png');
+    peekImages = [
+        await loadImage('assets/images/Peek_Left.png'),
+        await loadImage('assets/images/Peek_Center.png'),
+        await loadImage('assets/images/Peek_Right.png'),
+        await loadImage('assets/images/Peek_Back.png')
+    ];
 
-    lightLeftImg = await loadImage('assets/images/Light_Left.png');
-    lightCenterImg = await loadImage('assets/images/Light_Center.png');
-    lightRightImg = await loadImage('assets/images/Light_Right.png');
-    lightBackImg = await loadImage('assets/images/Light_Back.png');
+    lightImages = [
+        await loadImage('assets/images/Light_Left.png'),
+        await loadImage('assets/images/Light_Center.png'),
+        await loadImage('assets/images/Light_Right.png'),
+        await loadImage('assets/images/Light_Back.png')
+    ];
 
     transitionImg = await loadImage('assets/images/Transition.png');
 
@@ -71,7 +80,7 @@ function draw() {
         // "back" has no look image, so fall back to the centre one
         const hoverZone = getHoverDirection();
         direction = (hoverZone === "back") ? "center" : hoverZone;
-        image(getLookImage(direction), 0, 0, width, height);
+        image(getImageForDirection(lookImages, direction), 0, 0, width, height);
     } else if (mode === "transitioning") {
         image(transitionImg, 0, 0, width, height);
         transitionTimer++;
@@ -86,10 +95,19 @@ function draw() {
             }
         }
     } else if (mode === "peek") {
-        image(getPeekImage(direction), 0, 0, width, height);
+        image(getImageForDirection(peekImages, direction), 0, 0, width, height);
     } else if (mode === "light") {
-        image(getLightImage(direction), 0, 0, width, height);
+        image(getImageForDirection(lightImages, direction), 0, 0, width, height);
     }
+}
+
+/**
+ * Returns the image for a given direction out of an images array,
+ * using the directions array to line the two up
+ */
+function getImageForDirection(imagesArray, dir) {
+    const index = directions.indexOf(dir);
+    return imagesArray[index];
 }
 
 /**
@@ -140,33 +158,4 @@ function mousePressed() {
             lightSound.play();
         }
     }
-}
-
-/**
- * Returns the look image for a given direction
- */
-function getLookImage(dir) {
-    if (dir === "left") return lookLeftImg;
-    else if (dir === "right") return lookRightImg;
-    else return lookCenterImg;
-}
-
-/**
- * Returns the peek image for a given direction
- */
-function getPeekImage(dir) {
-    if (dir === "left") return peekLeftImg;
-    else if (dir === "right") return peekRightImg;
-    else if (dir === "back") return peekBackImg;
-    else return peekCenterImg;
-}
-
-/**
- * Returns the light image for a given direction
- */
-function getLightImage(dir) {
-    if (dir === "left") return lightLeftImg;
-    else if (dir === "right") return lightRightImg;
-    else if (dir === "back") return lightBackImg;
-    else return lightCenterImg;
 }
