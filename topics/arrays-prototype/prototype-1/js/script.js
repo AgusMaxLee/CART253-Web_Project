@@ -91,21 +91,33 @@ function drawFace(angerLevel) {
   line(rightEyeX + 12, browY, rightEyeX - 12, browY + innerDrop);
   pop();
 
-  // Mouth: curves into a smile when calm, flips into a frown when angry
+  // Mouth: curves into a smile when calm, flips into a frown when
+  // getting angry, then flies wide open into a scream once furious
   const mouthY = mrFurious.y + 35;
-  const mouthCurve = map(angerLevel, 0, 1, 20, -20);
 
-  push();
-  noFill();
-  stroke(0);
-  strokeWeight(4);
-  bezier(
-    mrFurious.x - 30, mouthY,
-    mrFurious.x - 15, mouthY + mouthCurve,
-    mrFurious.x + 15, mouthY + mouthCurve,
-    mrFurious.x + 30, mouthY
-  );
-  pop();
+  if (angerLevel > 0.8) {
+    // Final stage: wide open screaming mouth (a "D" shape: flat top
+    // lip, rounded open jaw below), growing as he gets angrier
+    const screamOpenness = map(angerLevel, 0.8, 1, 0, 1);
+    push();
+    noStroke();
+    fill(0);
+    arc(mrFurious.x, mouthY, 55, 30 + screamOpenness * 40, PI, TWO_PI, CHORD);
+    pop();
+  } else {
+    const mouthCurve = map(angerLevel, 0, 0.8, 20, -20);
+    push();
+    noFill();
+    stroke(0);
+    strokeWeight(4);
+    bezier(
+      mrFurious.x - 30, mouthY,
+      mrFurious.x - 15, mouthY + mouthCurve,
+      mrFurious.x + 15, mouthY + mouthCurve,
+      mrFurious.x + 30, mouthY
+    );
+    pop();
+  }
 }
 
 /**
