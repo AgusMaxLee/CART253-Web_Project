@@ -13,6 +13,11 @@ let pitch = 0;
 const lookSensitivity = 0.002;
 const lookDistance = 300;
 
+// the targets
+const targetSize = 15;
+const numTargets = 5;
+let targets = [];
+
 // how big the firing range is
 const floorY = 150;
 const laneWidth = 1000;
@@ -23,10 +28,28 @@ const wallZ = -laneLength + 200;
 const wallHeight = 600;
 
 /**
- * makes the 3D canvas
+ * makes the 3D canvas and spawns the targets
  */
 function setup() {
     createCanvas(800, 500, WEBGL).parent('game-container');
+
+    for (let i = 0; i < numTargets; i++) {
+        targets.push(createTarget());
+    }
+}
+
+/**
+ * makes one target somewhere on the back wall
+ */
+function createTarget() {
+    const halfLane = laneWidth / 2;
+    const edgeMargin = targetSize * 2;
+
+    return {
+        x: random(-halfLane + edgeMargin, halfLane - edgeMargin),
+        y: random(floorY - wallHeight + edgeMargin, floorY - edgeMargin),
+        z: wallZ + 20
+    };
 }
 
 /**
@@ -44,6 +67,10 @@ function draw() {
     drawFloor();
     drawBackWall();
     drawCounter();
+
+    for (let i = 0; i < targets.length; i++) {
+        drawTarget(targets[i]);
+    }
 }
 
 /**
@@ -79,6 +106,17 @@ function drawCounter() {
     translate(0, floorY - 40, -150);
     fill(120, 90, 60);
     box(laneWidth, 80, 30);
+    pop();
+}
+
+/**
+ * draws one target
+ */
+function drawTarget(target) {
+    push();
+    translate(target.x, target.y, target.z);
+    fill(230, 80, 80);
+    sphere(targetSize);
     pop();
 }
 
