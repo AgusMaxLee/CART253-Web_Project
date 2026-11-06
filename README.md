@@ -132,3 +132,23 @@ Agustin Maximo Lee
 ![Screenshot of the Rock Paper Scissors prototype](./images/rock-paper-scissors-screenshot.png)
 
 [View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/functions-prototype/rock-paper-scissors/) | [View code](./topics/functions-prototype/rock-paper-scissors/)
+
+### Arrays
+
+#### Mr. Furious Is Mad Again
+
+![Screenshot of the Mr. Furious Is Mad Again prototype](./images/mr-furious-is-mad-again-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/arrays-prototype/mr-furious-is-mad-again/) | [View code](./topics/arrays-prototype/mr-furious-is-mad-again/)
+
+#### FNAF 4 Mechanics
+
+![Screenshot of the FNAF 4 Mechanics prototype](./images/fnaf-4-mechanics-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/arrays-prototype/fnaf-4-mechanics/) | [View code](./topics/arrays-prototype/fnaf-4-mechanics/)
+
+#### Shooting Simulator
+
+![Screenshot of the Shooting Simulator prototype](./images/shooting-simulator-screenshot.png)
+
+[View running prototype](https://agusmaxlee.github.io/CART253-Web_Project/topics/arrays-prototype/shooting-simulator/) | [View code](./topics/arrays-prototype/shooting-simulator/)

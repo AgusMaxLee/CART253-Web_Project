@@ -79,3 +79,15 @@
 > Hoping someone playing the janitor game gets a laugh out of how random it feels, and that rock paper scissors feels satisfying enough to keep clicking through a few rounds just to watch the win/loss count go up.
 
 ![Screenshot of this week's prototypes](./images/page6-screenshot.png)
+
+## November 5, 2026
+
+> Well, at this point im just making small games and taking the liberty to do whatever i want and have fun with it. I always try to make the week's topic the main character of each prototype's code, and since Ive been sneaking arrays into a bunch of past prototypes anyway, this week I just focused on doing fun stuff or testing if something was even possible.
+
+> For Mr. Furious, I felt a little unaccomplished with how I left him before, so I just finished the job: made him way more expressive and threw in a whole array of pigeons flying around to really sell the frustration.
+
+> The second one was inspired by all the point and click adventures Ive seen floating around. I realized I could basically program the whole FNAF 4 experience using nothing but images as the visuals. I know its not exactly ethical to straight up copy a game's images and mechanics like that, but it was genuinely fun figuring out how to build each state and clickable zone to simulate the core loop. Honestly I think I could build the entire game (one night specifically) in p5 using this same logic, since the movement part is basically done already, and making the animatronics show up as random encounters feels very doable from here.
+
+> For the last one, I wanted to see if I could fake a whole game engine using WEBGL, and it turns out p5 already has a bunch of functions built in to help with exactly that. I was honestly surprised how easy it was to just plug in the functions p5 already gives you and end up with a literal first person shooter.
+
+![Screenshot of this week's prototypes](./images/page7-screenshot.png)
