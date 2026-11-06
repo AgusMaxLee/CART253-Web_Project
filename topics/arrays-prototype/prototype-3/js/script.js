@@ -7,6 +7,12 @@
 
 "use strict";
 
+// where we're looking, built from mouse movement
+let yaw = 0;
+let pitch = 0;
+const lookSensitivity = 0.002;
+const lookDistance = 300;
+
 // how big the firing range is
 const floorY = 150;
 const laneWidth = 1000;
@@ -20,16 +26,20 @@ const wallHeight = 600;
  * makes the 3D canvas
  */
 function setup() {
-    createCanvas(800, 500, WEBGL);
+    createCanvas(800, 500, WEBGL).parent('game-container');
 }
 
 /**
- * draws the floor, wall, and counter
+ * points the camera wherever we're looking, then draws everything
  */
 function draw() {
     background(30);
 
-    camera(0, 0, 0, 0, 0, -300, 0, 1, 0);
+    const lookX = sin(yaw) * cos(pitch) * lookDistance;
+    const lookY = sin(pitch) * lookDistance;
+    const lookZ = -cos(yaw) * cos(pitch) * lookDistance;
+
+    camera(0, 0, 0, lookX, lookY, lookZ, 0, 1, 0);
 
     drawFloor();
     drawBackWall();
@@ -70,4 +80,20 @@ function drawCounter() {
     fill(120, 90, 60);
     box(laneWidth, 80, 30);
     pop();
+}
+
+/**
+ * clicking locks the mouse so we can look around
+ */
+function mousePressed() {
+    requestPointerLock();
+}
+
+/**
+ * turns mouse movement into looking around
+ */
+function mouseMoved() {
+    yaw += movedX * lookSensitivity;
+    pitch += movedY * lookSensitivity;
+    pitch = constrain(pitch, -QUARTER_PI, QUARTER_PI);
 }
