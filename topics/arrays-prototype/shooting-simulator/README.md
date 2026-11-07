@@ -11,7 +11,8 @@ Agustin Maximo Lee
 ## Attribution
 
 > - This project uses [p5.js](https://p5js.org) and [p5.sound](https://p5js.org/reference/#/libraries/p5.sound), including p5's `worldToScreen()` for turning a target's 3D position into a 2D point to check against the crosshair.
-> - The gun image and the shoot/hit sounds are self made for this prototype.
+> - The shoot and hit sounds are from [myinstants.com](https://www.myinstants.com/en/categories/sound%20effects/us/).
+> - The gun image is from [pngfind.com](https://www.pngfind.com/).
 
 ## License
 
